@@ -6,21 +6,21 @@ document.addEventListener('mousemove', (e) => {
   const emoji = document.createElement('div');
   emoji.textContent = '😹';
   emoji.style.position = 'absolute';
-  emoji.style.left = `${e.pageX - 12}px`; // Смещение для центрирования
-  emoji.style.top = `${e.pageY - 12}px`;  // Смещение для центрирования
+  emoji.style.left = `${e.pageX - 12}px`;
+  emoji.style.top = `${e.pageY - 12}px`;
   emoji.style.opacity = 1;
-  emoji.style.transition = 'opacity 1s ease-out, transform 0.3s ease-out';
+  emoji.style.transition = 'opacity 1.2s ease-out, transform 0.4s ease-out';
   emoji.style.transform = 'translate(-50%, -50%)';
   document.body.appendChild(emoji);
   trailParticles.push(emoji);
 
   setTimeout(() => {
     emoji.style.opacity = 0;
-    setTimeout(() => emoji.remove(), 1000);
+    setTimeout(() => emoji.remove(), 1200);
     trailParticles = trailParticles.filter(p => p !== emoji);
   }, 2000);
 
-  if (trailParticles.length > 12) { // Увеличен лимит до 12 для большей плавности
+  if (trailParticles.length > 12) {
     trailParticles[0].remove();
     trailParticles.shift();
   }
@@ -39,12 +39,12 @@ function updateGallery() {
   });
 }
 
-document.querySelector('.gallery-arrow.left').addEventListener('click', () => {
+document.querySelector('.arrow-wrapper.left .gallery-arrow').addEventListener('click', () => {
   currentImageIndex = (currentImageIndex - 1 + 4) % 4;
   updateGallery();
 });
 
-document.querySelector('.gallery-arrow.right').addEventListener('click', () => {
+document.querySelector('.arrow-wrapper.right .gallery-arrow').addEventListener('click', () => {
   currentImageIndex = (currentImageIndex + 1) % 4;
   updateGallery();
 });
@@ -72,7 +72,7 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles = particles.filter(p => p.life > 0);
 
-  if (Math.random() < 0.05) particles.push(new EmojiParticle()); // Увеличена частота
+  if (Math.random() < 0.07) particles.push(new EmojiParticle()); // Увеличена частота
 
   particles.forEach(p => {
     if (p.alpha < 1 && p.life > 100) p.alpha += 0.005;
