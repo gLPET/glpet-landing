@@ -1,5 +1,5 @@
 // Проверка версии файла (для отладки)
-console.log("scripts.js loaded, version: 2025-07-18 00:22 CEST");
+console.log("scripts.js loaded, version: 2025-07-18 00:24 CEST");
 
 // Автоматическая галерея с синхронным переключением
 let currentImageIndices = Array.from({ length: 9 }, () => 0);
