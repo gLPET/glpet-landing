@@ -9,7 +9,7 @@ document.addEventListener('mousemove', (e) => {
   emoji.style.left = e.pageX + 'px';
   emoji.style.top = e.pageY + 'px';
   emoji.style.opacity = 1;
-  emoji.style.transition = 'opacity 0.5s ease-out';
+  emoji.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
   document.body.appendChild(emoji);
   trailParticles.push(emoji);
 
@@ -28,12 +28,12 @@ document.addEventListener('mousemove', (e) => {
 // Галерея
 let currentIndex = 0;
 const track = document.querySelector('.gallery-track');
-const slides = document.querySelectorAll('.gallery-track img');
-const totalSlides = Math.ceil(slides.length / 9);
+const columns = document.querySelectorAll('.gallery-column');
+const totalSlides = Math.ceil(columns.length / 9);
 
 function updateGallery() {
-  slides.forEach((slide, i) => {
-    slide.style.opacity = (i >= currentIndex * 9 && i < (currentIndex + 1) * 9) ? 1 : 0;
+  columns.forEach((column, i) => {
+    column.style.opacity = (i >= currentIndex * 9 && i < (currentIndex + 1) * 9) ? 1 : 0;
   });
 }
 
@@ -44,11 +44,6 @@ document.querySelector('.gallery-arrow.left').addEventListener('click', () => {
 
 document.querySelector('.gallery-arrow.right').addEventListener('click', () => {
   currentIndex = Math.min(totalSlides - 1, currentIndex + 1);
-  updateGallery();
-});
-
-document.querySelector('.gallery-switch').addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % totalSlides;
   updateGallery();
 });
 
