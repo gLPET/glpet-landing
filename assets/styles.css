@@ -6,7 +6,7 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
-  cursor: none;
+  /* cursor: none; Убрано для проверки курсора */
 }
 
 .main-logo {
@@ -71,17 +71,17 @@ body {
   height: 154px;
   border: 2px solid #000000;
   border-radius: 10px;
-  padding: 0; /* Убрал отступы, чтобы не влияли на высоту */
+  padding: 0;
   box-sizing: border-box;
-  overflow: hidden; /* Обрезаем содержимое */
+  overflow: hidden;
 }
 
 .gallery-image {
   width: 100%;
   height: 126px;
-  max-height: 126px; /* Принудительное ограничение высоты */
-  object-fit: cover; /* Обрезаем по размеру */
-  margin: 0; /* Убрал margin-bottom */
+  max-height: 126px;
+  object-fit: cover;
+  margin: 0;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -93,7 +93,7 @@ body {
 .gallery-cell a.gallery-link,
 .how-button {
   cursor: none !important;
-  margin-top: 5px; /* Переместил отступ вниз для ссылки */
+  margin-top: 5px;
   font-size: 0.8rem;
 }
 
