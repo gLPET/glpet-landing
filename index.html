@@ -1,213 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gLPET Universe</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: black;
-      color: white;
-      font-family: monospace;
-      overflow-x: hidden;
-    }
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-    }
-    .header-icons {
-      display: flex;
-      gap: 15px;
-    }
-    .header-icons img {
-      width: 30px;
-      height: 30px;
-    }
-    .logo-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 80px;
-    }
-    .logo-section img {
-      width: 60px;
-      height: 60px;
-      margin-right: 20px;
-    }
-    .logo-section h1 {
-      font-size: 24px;
-      color: white;
-    }
-    .content {
-      text-align: justify;
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-    .contract {
-      color: gold;
-      text-align: center;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    .highlight {
-      color: gold;
-      font-weight: bold;
-    }
-    .gallery-container {
-      position: relative;
-      margin: 40px auto;
-      max-width: 1100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .gallery img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow: hidden;
-      gap: 10px;
-    }
-    .gallery-item {
-      text-align: center;
-      font-size: 12px;
-      color: white;
-    }
-    .arrow {
-      font-size: 30px;
-      color: white;
-      cursor: pointer;
-      user-select: none;
-    }
-    .footer-btn {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .footer-btn button {
-      background-color: black;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div class="header-icons">
-      <a href="https://x.com/SLeocrypto"><img src="assets/x.svg" alt="X"></a>
-      <a href="https://t.me/gLOLpet"><img src="assets/tg.svg" alt="Telegram"></a>
-      <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump"><img src="assets/dex.svg" alt="Dexscreener"></a>
+<!-- Horizontal galleries setup (9 mini-cards in one row) -->
+<div class="gallery-container">
+  <button class="gallery-arrow left" onclick="scrollGallery(-1)">⬅</button>
+  <div class="mini-gallery" id="miniGallery">
+    <div class="gallery-row">
+      <!-- Elon Musk -->
+      <img src="assets/Elon_Musk_7.jpg" alt="Elon Musk">
+      <img src="assets/Elon_Musk_10.jpg" alt="Elon Musk">
+      <img src="assets/Elon_Musk_11.jpg" alt="Elon Musk">
+      <img src="assets/Elon_Musk_17.jpg" alt="Elon Musk">
+    </div>
+    <div class="gallery-row">
+      <!-- A.Tate -->
+      <img src="assets/Ram_1.jpg" alt="A.Tate">
+      <img src="assets/Ram_2.jpg" alt="A.Tate">
+    </div>
+    <div class="gallery-row">
+      <!-- Shibetoshi Nakamoto -->
+      <img src="assets/BillyM2k_1.jpg" alt="Shibetoshi Nakamoto">
+      <img src="assets/BillyM2k_2.jpg" alt="Shibetoshi Nakamoto">
+      <img src="assets/BillyM2k_3.jpg" alt="Shibetoshi Nakamoto">
+      <img src="assets/BillyM2k_4.jpg" alt="Shibetoshi Nakamoto">
+    </div>
+    <div class="gallery-row">
+      <!-- Marcell -->
+      <img src="assets/Marcell_2.jpg" alt="Marcell">
+      <img src="assets/Marcell_3.jpg" alt="Marcell">
+      <img src="assets/Marcell_5.jpg" alt="Marcell">
+      <img src="assets/Marcell_6.jpg" alt="Marcell">
+    </div>
+    <div class="gallery-row">
+      <!-- Gabriel Shapiro -->
+      <img src="assets/GabrielShapiro_2.jpg" alt="Gabriel Shapiro">
+      <img src="assets/GabrielShapiro_5.jpg" alt="Gabriel Shapiro">
+      <img src="assets/GabrielShapiro_6.jpg" alt="Gabriel Shapiro">
+      <img src="assets/GabrielShapiro_7.jpg" alt="Gabriel Shapiro">
+    </div>
+    <div class="gallery-row">
+      <!-- Lexaprotrader -->
+      <img src="assets/Lexaprotrader_2.jpg" alt="Lexaprotrader">
+      <img src="assets/Lexaprotrader_3.jpg" alt="Lexaprotrader">
+      <img src="assets/Lexaprotrader_4.jpg" alt="Lexaprotrader">
+      <img src="assets/Lexaprotrader_9.jpg" alt="Lexaprotrader">
+    </div>
+    <div class="gallery-row">
+      <!-- Ram -->
+      <img src="assets/Ram_1.jpg" alt="Ram">
+      <img src="assets/Ram_2.jpg" alt="Ram">
+    </div>
+    <div class="gallery-row">
+      <!-- Bossman -->
+      <img src="assets/Bossman_1.jpg" alt="Bossman">
+      <img src="assets/Bossman_2.jpg" alt="Bossman">
+    </div>
+    <div class="gallery-row">
+      <!-- DJ.En -->
+      <img src="assets/DJEn_1.jpg" alt="DJ.En">
+      <img src="assets/DJEn_2.jpg" alt="DJ.En">
     </div>
   </div>
+  <button class="gallery-arrow right" onclick="scrollGallery(1)">➡</button>
+</div>
 
-  <div class="logo-section">
-    <img src="logo.png" alt="logo">
-    <h1>Welcome to the gLPET Universe</h1>
-  </div>
+<style>
+  .gallery-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    position: relative;
+  }
+  .mini-gallery {
+    display: grid;
+    grid-template-columns: repeat(9, 100px);
+    overflow: hidden;
+    gap: 10px;
+    padding: 10px;
+  }
+  .gallery-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .gallery-row img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .gallery-arrow {
+    background-color: yellow;
+    color: black;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 8px #ff0;
+    cursor: pointer;
+  }
+</style>
 
-  <div class="contract">CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</div>
+<script>
+  let currentOffset = 0;
+  const gallery = document.getElementById("miniGallery");
 
-  <div class="content">
-    <p>My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.</p>
-    <p>I want to show people that in the meme market, most projects become fixated on a single character.<br>
-    Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content… and so on.</p>
-    <p>But I want to show that people can become the source of content themselves — they can shape the narrative however they want:<br>
-    funny, creative, emotional, or completely chaotic.</p>
-    <p>They don’t need to wait for a new TikTok video or a push from some big page.<br>
-    Just imagine: 100 people hold the token ➝ each of them edits a photo ➝ you get 100 unique images.<br>
-    That alone can trigger a mini-viral moment. Now imagine 1,000 people…<br>
-    That’s a new kind of Covid, right? 😹</p>
-    <p>The feed on Twitter would be flooded.<br>
-    Sure, some will try to profit from it — but regular holders will keep posting and pushing.</p>
-    <p class="highlight">No more just “buy and wait.” This is “buy and create.”</p>
-  </div>
-
-  <div class="footer-btn">
-    <button onclick="location.href='howitworks.html'">How it works</button>
-  </div>
-
-  <div class="gallery-container">
-    <div class="arrow" onclick="slide(-1)">&#8592;</div>
-    <div class="gallery" id="gallery">
-      <div class="gallery-item"><img src="assets/Elon_Musk_7.jpg"><div>@elonmusk</div></div>
-      <div class="gallery-item"><img src="assets/Marcell_2.jpg"><div>@MarcellxMarcell</div></div>
-      <div class="gallery-item"><img src="assets/Lexaprotrader_2.jpg"><div>@LexaproTrader</div></div>
-      <div class="gallery-item"><img src="assets/GabrielShapiro_2.jpg"><div>@lex_node</div></div>
-      <div class="gallery-item"><img src="assets/Bossman_1.jpg"><div>@0xBossman</div></div>
-      <div class="gallery-item"><img src="assets/Ram_1.jpg"><div>@0xRamonos</div></div>
-      <div class="gallery-item"><img src="assets/A.Tate_14.jpg"><div>@Cobratate</div></div>
-      <div class="gallery-item"><img src="assets/QueenCrypto_1.jpg"><div>@BillyM2k</div></div>
-      <div class="gallery-item"><img src="assets/DJEn_2.jpg"><div>@thisisdjen</div></div>
-    </div>
-    <div class="arrow" onclick="slide(1)">&#8594;</div>
-  </div>
-
-  <canvas id="emojiCanvas"></canvas>
-  <script>
-    let scroll = 0;
-    function slide(dir) {
-      const gallery = document.getElementById("gallery");
-      scroll += dir * 120;
-      gallery.scrollTo({ left: scroll, behavior: "smooth" });
-    }
-
-    const canvas = document.getElementById("emojiCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const emojis = ["😹", "🐶", "🐱", "🦊", "🐸", "🐵", "🦄", "🐯"];
-
-    let emojiStars = [];
-    function createEmoji() {
-      if (emojiStars.length < 120) {
-        emojiStars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: 24 + Math.random() * 12,
-          opacity: 0,
-          life: 0,
-          char: emojis[Math.floor(Math.random() * emojis.length)],
-        });
-      }
-    }
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      emojiStars.forEach((e, i) => {
-        ctx.globalAlpha = Math.abs(Math.sin(e.life / 40));
-        ctx.font = `${e.size}px serif`;
-        ctx.fillText(e.char, e.x, e.y);
-        e.life++;
-        if (e.life > 240) emojiStars.splice(i, 1);
-      });
-      requestAnimationFrame(animate);
-    }
-    setInterval(createEmoji, 250);
-    animate();
-  </script>
-</body>
-</html>
+  function scrollGallery(direction) {
+    const rowWidth = 110; // Width + gap
+    currentOffset += direction * rowWidth;
+    gallery.scrollLeft = currentOffset;
+  }
+</script>
