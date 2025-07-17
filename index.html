@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>gLPET | Meme Space</title>
+  <title>gLPET | Meme Sky</title>
   <style>
     html, body {
       margin: 0;
@@ -14,11 +14,18 @@
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
     }
-    canvas {
+    .emoji {
       position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
+      font-size: 28px;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeInOut 4s ease-in-out forwards;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: scale(0.5); }
+      25% { opacity: 1; transform: scale(1.2); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.8); }
     }
     .title {
       position: relative;
@@ -31,62 +38,25 @@
   </style>
 </head>
 <body>
-  <canvas id="emojiSky"></canvas>
   <div class="title">Welcome to the gLPET Universe</div>
   <script>
-    const canvas = document.getElementById('emojiSky');
-    const ctx = canvas.getContext('2d');
-    const emojis = ['😹', '🐶', '🐱', '🐸', '🐵', '🦊', '🦁', '🐯'];
-    const stars = [];
+    const emojis = ['😹','🐶','🐱','🐸','🐵','🦊','🦁','🐯'];
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.top = Math.random() * 100 + 'vh';
+      emoji.style.fontSize = (20 + Math.random() * 30) + 'px';
+      document.body.appendChild(emoji);
 
-    function randomStar() {
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: 24 + Math.random() * 20,
-        emoji: emojis[Math.floor(Math.random() * emojis.length)],
-        ttl: 60 + Math.random() * 80,
-        opacity: 0
-      };
+      setTimeout(() => {
+        emoji.remove();
+      }, 4000);
     }
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => {
-        ctx.globalAlpha = s.opacity;
-        ctx.font = `${s.size}px Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        try {
-          ctx.fillText(s.emoji, s.x, s.y);
-        } catch {
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.size / 2, 0, 2 * Math.PI);
-          ctx.fillStyle = "white";
-          ctx.fill();
-        }
-        s.ttl--;
-        s.opacity = Math.min(1, s.opacity + 0.05);
-        if (s.ttl < 20) s.opacity -= 0.05;
-      });
-      while (stars.length < 30) stars.push(randomStar());
-      for (let i = stars.length - 1; i >= 0; i--) {
-        if (stars[i].ttl <= 0 || stars[i].opacity <= 0) {
-          stars.splice(i, 1);
-        }
-      }
-      ctx.globalAlpha = 1.0;
-      requestAnimationFrame(draw);
-    }
-
-    draw();
+    setInterval(createEmoji, 300);
   </script>
 </body>
 </html>
