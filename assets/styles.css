@@ -6,7 +6,7 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
-  cursor: none; /* Убираем стандартный курсор */
+  /* Убрал cursor: none, вернули стандартный курсор */
 }
 
 .header {
@@ -136,12 +136,6 @@ body {
   padding: 5px 15px;
   text-decoration: none;
   display: inline-block;
-}
-
-#cursor-trail {
-  position: absolute;
-  pointer-events: none;
-  z-index: 10000;
 }
 
 canvas#emoji-background {
