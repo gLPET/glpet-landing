@@ -1,113 +1,53 @@
-// Кастомный курсор 😹 с шлейфом
-const cursorEmoji = "😹";
-const trailLength = 10;
-const trail = [];
-const cursor = document.createElement("div");
-cursor.style.position = "fixed";
-cursor.style.pointerEvents = "none";
-cursor.style.fontSize = "20px";
-document.body.appendChild(cursor);
-
-document.addEventListener("mousemove", (e) => {
-  trail.push({ x: e.clientX, y: e.clientY });
-  if (trail.length > trailLength) trail.shift();
-
-  cursor.style.left = `${e.clientX}px`;
-  cursor.style.top = `${e.clientY}px`;
-
-  // добавить хвост
-  document.querySelectorAll(".emoji-trail").forEach((el) => el.remove());
-  trail.forEach((pos, i) => {
-    const dot = document.createElement("div");
-    dot.textContent = cursorEmoji;
-    dot.className = "emoji-trail";
-    dot.style.position = "fixed";
-    dot.style.left = `${pos.x}px`;
-    dot.style.top = `${pos.y}px`;
-    dot.style.opacity = `${i / trailLength}`;
-    dot.style.pointerEvents = "none";
-    dot.style.fontSize = "16px";
-    document.body.appendChild(dot);
-  });
-});
-
-// Эмодзи-животные в фоне
-const animalEmojis = ["🐶", "🐱", "😹", "🐵", "🐸", "🐯", "🦊", "🦁", "🐮"];
-function createFloatingEmoji() {
+// Космический фон с эмодзи-животными
+const emojis = ["😹", "🐸", "🐶", "🐱", "🦊", "🐭", "🐯", "🐰"];
+function spawnEmoji() {
   const emoji = document.createElement("div");
-  emoji.textContent = animalEmojis[Math.floor(Math.random() * animalEmojis.length)];
+  emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
   emoji.style.position = "fixed";
   emoji.style.left = Math.random() * 100 + "vw";
   emoji.style.top = Math.random() * 100 + "vh";
-  emoji.style.opacity = "0";
-  emoji.style.transition = "opacity 1s ease-in-out";
   emoji.style.fontSize = "20px";
-  emoji.style.zIndex = 0;
+  emoji.style.opacity = "0.6";
+  emoji.style.pointerEvents = "none";
+  emoji.style.zIndex = "1";
   document.body.appendChild(emoji);
-
-  requestAnimationFrame(() => {
-    emoji.style.opacity = "1";
-    setTimeout(() => {
-      emoji.style.opacity = "0";
-      setTimeout(() => emoji.remove(), 1000);
-    }, 3000);
-  });
+  setTimeout(() => emoji.remove(), 4000);
 }
-setInterval(createFloatingEmoji, 1000);
+setInterval(spawnEmoji, 500); // быстрее
 
-// Галерея gLPET персонажей
-const galleryData = [
-  { folder: "Elon Musk", handle: "@elonmusk" },
-  { folder: "A.Tate", handle: "@Cobratate" },
-  { folder: "Shibetoshi_nakamoto", handle: "@BillyM2k" },
-  { folder: "Marcell", handle: "@MarcellxMarcell" },
-  { folder: "GabrielShapiro", handle: "@lex_node" },
-  { folder: "Lexaprotrader", handle: "@LexaproTrader" },
-  { folder: "Ram", handle: "@0xRamonos" },
-  { folder: "Bossman", handle: "@0xBossman" },
-  { folder: "DJ.En", handle: "@thisisdjen" },
-];
+// Курсор 😹 с длинным хвостом
+const cursor = document.getElementById("cursor");
+const trail = document.getElementById("trail");
 
-const galleryContainer = document.createElement("div");
-galleryContainer.className = "gallery-container";
-document.body.appendChild(galleryContainer);
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.pageX + "px";
+  cursor.style.top = e.pageY + "px";
 
-const prevBtn = document.createElement("button");
-const nextBtn = document.createElement("button");
-prevBtn.textContent = "←";
-nextBtn.textContent = "→";
-prevBtn.className = "carousel-button";
-nextBtn.className = "carousel-button";
-galleryContainer.appendChild(prevBtn);
-galleryContainer.appendChild(nextBtn);
+  const dot = document.createElement("div");
+  dot.className = "trail-dot";
+  dot.style.left = e.pageX + "px";
+  dot.style.top = e.pageY + "px";
+  dot.innerText = "😹";
+  trail.appendChild(dot);
 
-let imageIndex = 1;
-function renderGallery() {
-  document.querySelectorAll(".carousel-row").forEach((e) => e.remove());
-  galleryData.forEach((item) => {
-    const row = document.createElement("div");
-    row.className = "carousel-row";
+  setTimeout(() => dot.remove(), 1000);
+});
 
-    const img = document.createElement("img");
-    img.src = `assets/${item.folder}_${imageIndex}.jpg`;
-    img.alt = item.folder;
+// Галерея
+const images = document.querySelectorAll(".carousel img");
+let currentIndex = 0;
 
-    const caption = document.createElement("div");
-    caption.className = "caption";
-    caption.textContent = item.handle;
+document.getElementById("next").onclick = () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  updateCarousel();
+};
 
-    row.appendChild(img);
-    row.appendChild(caption);
-    galleryContainer.appendChild(row);
-  });
+document.getElementById("prev").onclick = () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  updateCarousel();
+};
+
+function updateCarousel() {
+  const offset = -currentIndex * 130; // 120px width + 10px gap
+  document.querySelector(".carousel").style.transform = `translateX(${offset}px)`;
 }
-renderGallery();
-
-nextBtn.onclick = () => {
-  imageIndex++;
-  renderGallery();
-};
-prevBtn.onclick = () => {
-  imageIndex = Math.max(1, imageIndex - 1);
-  renderGallery();
-};
