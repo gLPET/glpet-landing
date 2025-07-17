@@ -1,4 +1,4 @@
-// Кастомный курсор с плавным следом
+// Кастомный курсор с эмодзи (без стандартного курсора)
 const trail = document.getElementById('cursor-trail');
 let trailParticles = [];
 
@@ -26,7 +26,7 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// Галерея с переключением фотографий
+// Галерея с корректным переключением фотографий
 let currentImageIndex = 0;
 const cells = document.querySelectorAll('.gallery-cell');
 
@@ -34,7 +34,7 @@ function updateGallery() {
   cells.forEach(cell => {
     const cellImages = cell.querySelectorAll('.gallery-image');
     cellImages.forEach((img, i) => {
-      img.classList.toggle('active', i === currentImageIndex);
+      img.classList.toggle('active', (i === currentImageIndex));
     });
   });
 }
@@ -72,7 +72,7 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles = particles.filter(p => p.life > 0);
 
-  if (Math.random() < 0.07) particles.push(new EmojiParticle()); // Увеличена частота
+  if (Math.random() < 0.07) particles.push(new EmojiParticle());
 
   particles.forEach(p => {
     if (p.alpha < 1 && p.life > 100) p.alpha += 0.005;
