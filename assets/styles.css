@@ -6,7 +6,6 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
-  /* Убрал cursor: none, вернули стандартный курсор */
 }
 
 .header {
@@ -136,6 +135,22 @@ body {
   padding: 5px 15px;
   text-decoration: none;
   display: inline-block;
+}
+
+.full-image-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 100px); /* Высота экрана минус шапка и отступы */
+  overflow: hidden;
+}
+
+.full-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 canvas#emoji-background {
