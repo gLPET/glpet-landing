@@ -39,10 +39,14 @@ function updateGallery() {
   });
 }
 
-setInterval(() => {
-  currentImageIndex = (currentImageIndex + 1) % 4;
-  updateGallery();
-}, 3000); // Переключение каждые 3 секунды
+// Установка начального состояния
+document.addEventListener('DOMContentLoaded', () => {
+  updateGallery(); // Показать первую картинку при загрузке
+  setInterval(() => {
+    currentImageIndex = (currentImageIndex + 1) % 4;
+    updateGallery();
+  }, 3000); // Переключение каждые 3 секунды
+});
 
 // Эмодзи-звезды с медленным появлением и быстрым исчезновением
 const canvas = document.getElementById('emoji-background');
@@ -70,8 +74,8 @@ function animate() {
   if (Math.random() < 0.07) particles.push(new EmojiParticle());
 
   particles.forEach(p => {
-    if (p.alpha < 1 && p.life > 150) p.alpha += 0.003; // Медленное появление
-    else if (p.life < 50) p.alpha -= 0.02; // Быстрое исчезновение
+    if (p.alpha < 1 && p.life > 150) p.alpha += 0.003;
+    else if (p.life < 50) p.alpha -= 0.02;
     p.size += p.growth;
     if (p.size > 30) p.growth = -p.growth;
     p.life--;
