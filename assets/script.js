@@ -1,85 +1,113 @@
-const galleryData = [
-  {
-    name: "Elon Musk",
-    handle: "@elonmusk",
-    images: ["Marcell_2.jpg", "Marcell_3.jpg", "Marcell_5.jpg"]
-  },
-  {
-    name: "A.Tate",
-    handle: "@Cobratate",
-    images: ["Ram_2.jpg", "Ram_4.jpg", "Ram_5.jpg"]
-  },
-  {
-    name: "Shibetoshi",
-    handle: "@BillyM2k",
-    images: ["Shibetoshi_nakamoto_2.png", "Shibetoshi_nakamoto_4.png", "Shibetoshi_nakamoto_5.png"]
-  },
-  {
-    name: "Marcell",
-    handle: "@MarcellxMarcell",
-    images: ["Shibetoshi_nakamoto_8.png", "Marcell_6.jpg"]
-  },
-  {
-    name: "GabrielShapiro",
-    handle: "@lex_node",
-    images: ["logo.png"]
-  },
-  {
-    name: "LexaproTrader",
-    handle: "@LexaproTrader",
-    images: ["logo.png"]
-  },
-  {
-    name: "Ram",
-    handle: "@0xRamonos",
-    images: ["logo.png"]
-  },
-  {
-    name: "Bossman",
-    handle: "@0xBossman",
-    images: ["logo.png"]
-  },
-  {
-    name: "DJ.En",
-    handle: "@thisisdjen",
-    images: ["logo.png"]
-  }
-];
+// Кастомный курсор 😹 с шлейфом
+const cursorEmoji = "😹";
+const trailLength = 10;
+const trail = [];
+const cursor = document.createElement("div");
+cursor.style.position = "fixed";
+cursor.style.pointerEvents = "none";
+cursor.style.fontSize = "20px";
+document.body.appendChild(cursor);
 
-let currentIndex = 0;
+document.addEventListener("mousemove", (e) => {
+  trail.push({ x: e.clientX, y: e.clientY });
+  if (trail.length > trailLength) trail.shift();
 
-function renderGallery() {
-  const container = document.getElementById("gallery-container");
-  container.innerHTML = "";
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
 
-  galleryData.forEach((item, i) => {
-    const image = document.createElement("img");
-    image.src = `assets/${item.images[currentIndex % item.images.length]}`;
-    image.alt = item.name;
-    image.style.maxWidth = "120px";
-    image.style.margin = "10px auto";
+  // добавить хвост
+  document.querySelectorAll(".emoji-trail").forEach((el) => el.remove());
+  trail.forEach((pos, i) => {
+    const dot = document.createElement("div");
+    dot.textContent = cursorEmoji;
+    dot.className = "emoji-trail";
+    dot.style.position = "fixed";
+    dot.style.left = `${pos.x}px`;
+    dot.style.top = `${pos.y}px`;
+    dot.style.opacity = `${i / trailLength}`;
+    dot.style.pointerEvents = "none";
+    dot.style.fontSize = "16px";
+    document.body.appendChild(dot);
+  });
+});
 
-    const label = document.createElement("div");
-    label.textContent = item.handle;
-    label.style.fontSize = "12px";
-    label.style.marginBottom = "20px";
+// Эмодзи-животные в фоне
+const animalEmojis = ["🐶", "🐱", "😹", "🐵", "🐸", "🐯", "🦊", "🦁", "🐮"];
+function createFloatingEmoji() {
+  const emoji = document.createElement("div");
+  emoji.textContent = animalEmojis[Math.floor(Math.random() * animalEmojis.length)];
+  emoji.style.position = "fixed";
+  emoji.style.left = Math.random() * 100 + "vw";
+  emoji.style.top = Math.random() * 100 + "vh";
+  emoji.style.opacity = "0";
+  emoji.style.transition = "opacity 1s ease-in-out";
+  emoji.style.fontSize = "20px";
+  emoji.style.zIndex = 0;
+  document.body.appendChild(emoji);
 
-    const block = document.createElement("div");
-    block.appendChild(image);
-    block.appendChild(label);
-
-    container.appendChild(block);
+  requestAnimationFrame(() => {
+    emoji.style.opacity = "1";
+    setTimeout(() => {
+      emoji.style.opacity = "0";
+      setTimeout(() => emoji.remove(), 1000);
+    }, 3000);
   });
 }
+setInterval(createFloatingEmoji, 1000);
 
-document.querySelector(".gallery-prev").addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + galleryData[0].images.length) % galleryData[0].images.length;
+// Галерея gLPET персонажей
+const galleryData = [
+  { folder: "Elon Musk", handle: "@elonmusk" },
+  { folder: "A.Tate", handle: "@Cobratate" },
+  { folder: "Shibetoshi_nakamoto", handle: "@BillyM2k" },
+  { folder: "Marcell", handle: "@MarcellxMarcell" },
+  { folder: "GabrielShapiro", handle: "@lex_node" },
+  { folder: "Lexaprotrader", handle: "@LexaproTrader" },
+  { folder: "Ram", handle: "@0xRamonos" },
+  { folder: "Bossman", handle: "@0xBossman" },
+  { folder: "DJ.En", handle: "@thisisdjen" },
+];
+
+const galleryContainer = document.createElement("div");
+galleryContainer.className = "gallery-container";
+document.body.appendChild(galleryContainer);
+
+const prevBtn = document.createElement("button");
+const nextBtn = document.createElement("button");
+prevBtn.textContent = "←";
+nextBtn.textContent = "→";
+prevBtn.className = "carousel-button";
+nextBtn.className = "carousel-button";
+galleryContainer.appendChild(prevBtn);
+galleryContainer.appendChild(nextBtn);
+
+let imageIndex = 1;
+function renderGallery() {
+  document.querySelectorAll(".carousel-row").forEach((e) => e.remove());
+  galleryData.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "carousel-row";
+
+    const img = document.createElement("img");
+    img.src = `assets/${item.folder}_${imageIndex}.jpg`;
+    img.alt = item.folder;
+
+    const caption = document.createElement("div");
+    caption.className = "caption";
+    caption.textContent = item.handle;
+
+    row.appendChild(img);
+    row.appendChild(caption);
+    galleryContainer.appendChild(row);
+  });
+}
+renderGallery();
+
+nextBtn.onclick = () => {
+  imageIndex++;
   renderGallery();
-});
-
-document.querySelector(".gallery-next").addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % galleryData[0].images.length;
+};
+prevBtn.onclick = () => {
+  imageIndex = Math.max(1, imageIndex - 1);
   renderGallery();
-});
-
-document.addEventListener("DOMContentLoaded", renderGallery);
+};
