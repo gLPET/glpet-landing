@@ -2,304 +2,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>gLPET Universe</title>
   <style>
-    html, body {
+    body {
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
       margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-      cursor: none;
+      padding: 20px;
     }
-    header {
+    .gallery-row {
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      padding: 16px 32px;
-    }
-    .icons svg {
-      width: 32px;
-      height: 32px;
-      margin-right: 16px;
-      vertical-align: middle;
-    }
-    .icons {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .logo {
-      display: block;
-      max-width: 80px;
-    }
-    .contract {
-      color: #facc15;
-      text-align: center;
-      font-size: 0.9em;
-      margin-top: 10px;
-    }
-    .headline {
-      font-size: 2em;
-      text-align: center;
-      margin-top: 10px;
-    }
-    .vision {
-      max-width: 700px;
-      margin: 40px auto;
-      color: #fcd34d;
-      font-family: monospace;
-      white-space: pre-wrap;
-      line-height: 1.6;
-    }
-    .button-wrap {
-      text-align: center;
-      margin: 30px 0;
-    }
-    .how-button {
-      background: white;
-      color: black;
-      padding: 12px 24px;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: all 0.3s ease;
-    }
-    .how-button:hover {
-      background: black;
-      color: white;
-      border: 2px solid white;
-    }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
       gap: 10px;
-      padding: 10px 20px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      margin: 20px 0;
     }
-    .carousel img {
-      height: 180px;
-      scroll-snap-align: start;
-      border-radius: 12px;
+    .gallery-row img {
+      width: 100px;
+      height: 100px;
+      background: #333;
+      color: white;
+      border-radius: 8px;
+      object-fit: cover;
     }
-    .carousel-title {
-      font-size: 1.3em;
-      margin: 16px 20px 4px;
-      color: #38bdf8;
-    }
-    #cursor {
-      position: fixed;
-      pointer-events: none;
-      font-size: 24px;
-      z-index: 10000;
-    }
-    .trail {
-      position: fixed;
-      pointer-events: none;
-      font-size: 20px;
-      opacity: 0.5;
-      z-index: 9999;
-      animation: fade 1s linear forwards;
-    }
-    @keyframes fade {
-      to {
-        opacity: 0;
-        transform: scale(0.6);
-      }
+    .controls {
+      margin: 20px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="icons">
-      <a href="https://x.com" target="_blank"><img src="assets/x.svg" alt="X icon" /></a>
-      <a href="https://t.me" target="_blank"><img src="assets/tg.svg" alt="Telegram icon" /></a>
-      <a href="https://dexscreener.com" target="_blank"><img src="assets/dex.svg" alt="Dex icon" /></a>
-    </div>
-    <h1 class="headline">Welcome to the gLPET Universe</h1>
-  </header>
-
-  <div style="text-align:center;">
-    <img src="assets/logo.png" alt="gLPET Logo" class="logo" />
-    <div class="contract">CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</div>
+  <h1>Welcome to the gLPET Universe</h1>
+  <div class="controls">
+    <button onclick="prev()">⬅️</button>
+    <button onclick="next()">➡️</button>
   </div>
-
-  <div class="vision">
-My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.
-
-I want to show people that in the meme market, most projects become fixated on a single character. Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content… and so on.
-
-But I want to show that people can become the source of content themselves — they can shape the narrative however they want: funny, creative, emotional, or completely chaotic.
-
-They don’t need to wait for a new TikTok video or a push from some big page. Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images. That alone can trigger a mini-viral moment. Now imagine 1,000 people… That’s a new kind of Covid, right? 😹
-
-The feed on Twitter would be flooded. Sure, some will try to profit from it — but regular holders will keep posting and pushing.
-
-No more just “buy and wait.” This is “buy and create.”
+  <div class="gallery-row" id="row">
+    <img id="img0" src="assets/section0_img1.jpg">
+    <img id="img1" src="assets/section1_img1.jpg">
+    <img id="img2" src="assets/section2_img1.jpg">
+    <img id="img3" src="assets/section3_img1.jpg">
+    <img id="img4" src="assets/section4_img1.jpg">
+    <img id="img5" src="assets/section5_img1.jpg">
+    <img id="img6" src="assets/section6_img1.jpg">
+    <img id="img7" src="assets/section7_img1.jpg">
+    <img id="img8" src="assets/section8_img1.jpg">
   </div>
-
-  <div class="button-wrap">
-    <button class="how-button" onclick="location.href='how.html'">How it works</button>
-  </div>
-<div class="carousel-title">Elon Musk</div><div class="carousel">
-<img src="assets/Elon_Musk_1.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_2.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_3.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_4.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_5.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_6.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_7.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_8.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_9.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_10.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_11.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_12.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_13.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_14.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_15.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_16.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_17.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_18.jpg" alt="Elon Musk image"/>
-<img src="assets/Elon_Musk_19.jpg" alt="Elon Musk image"/>
-</div>
-<div class="carousel-title">A. Tate</div><div class="carousel">
-<img src="assets/A.Tate_1.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_2.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_3.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_4.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_5.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_6.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_7.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_8.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_9.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_10.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_11.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_12.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_13.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_14.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_15.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_16.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_17.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_18.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_19.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_20.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_21.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_22.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_23.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_24.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_25.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_26.jpg" alt="A. Tate image"/>
-<img src="assets/A.Tate_27.jpg" alt="A. Tate image"/>
-</div>
-<div class="carousel-title">Shibetoshi Nakamoto</div><div class="carousel">
-<img src="assets/Shibetoshi_nakamoto_1.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_2.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_3.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_4.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_5.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_6.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_7.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_8.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_9.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_10.png" alt="Shibetoshi Nakamoto image"/>
-<img src="assets/Shibetoshi_nakamoto_11.png" alt="Shibetoshi Nakamoto image"/>
-</div>
-<div class="carousel-title">Marcell</div><div class="carousel">
-<img src="assets/Marcell_1.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_2.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_3.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_4.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_5.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_6.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_7.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_8.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_9.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_10.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_11.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_12.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_13.jpg" alt="Marcell image"/>
-<img src="assets/Marcell_14.jpg" alt="Marcell image"/>
-</div>
-<div class="carousel-title">Gabriel Shapiro</div><div class="carousel">
-<img src="assets/GabrielShapiro_1.jpg" alt="Gabriel Shapiro image"/>
-<img src="assets/GabrielShapiro_2.jpg" alt="Gabriel Shapiro image"/>
-<img src="assets/GabrielShapiro_3.jpg" alt="Gabriel Shapiro image"/>
-<img src="assets/GabrielShapiro_4.jpg" alt="Gabriel Shapiro image"/>
-<img src="assets/GabrielShapiro_5.jpg" alt="Gabriel Shapiro image"/>
-<img src="assets/GabrielShapiro_6.jpg" alt="Gabriel Shapiro image"/>
-<img src="assets/GabrielShapiro_7.jpg" alt="Gabriel Shapiro image"/>
-</div>
-<div class="carousel-title">Lexaprotrader</div><div class="carousel">
-<img src="assets/Lexaprotrader_1.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_2.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_3.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_4.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_5.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_6.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_7.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_8.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_9.jpg" alt="Lexaprotrader image"/>
-<img src="assets/Lexaprotrader_10.jpg" alt="Lexaprotrader image"/>
-</div>
-<div class="carousel-title">Ram</div><div class="carousel">
-<img src="assets/Ram_1.png" alt="Ram image"/>
-<img src="assets/Ram_2.jpg" alt="Ram image"/>
-<img src="assets/Ram_3.jpg" alt="Ram image"/>
-<img src="assets/Ram_4.jpg" alt="Ram image"/>
-<img src="assets/Ram_5.jpg" alt="Ram image"/>
-<img src="assets/Ram_6.jpg" alt="Ram image"/>
-</div>
-<div class="carousel-title">WEB Eliza</div><div class="carousel">
-<img src="assets/WEBEliza_1.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_2.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_3.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_4.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_5.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_6.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_7.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_8.jpg" alt="WEB Eliza image"/>
-<img src="assets/WEBEliza_9.jpg" alt="WEB Eliza image"/>
-</div>
-<div class="carousel-title">Bossman</div><div class="carousel">
-<img src="assets/Bossman_1.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_2.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_3.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_4.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_5.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_6.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_7.jpg" alt="Bossman image"/>
-<img src="assets/Bossman_8.jpg" alt="Bossman image"/>
-</div>
-<div class="carousel-title">DJ.En</div><div class="carousel">
-<img src="assets/DJ_En_1.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_2.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_3.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_4.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_5.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_6.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_7.jpg" alt="DJ.En image"/>
-<img src="assets/DJ_En_8.jpg" alt="DJ.En image"/>
-</div>
-
-<div id="cursor">😹</div>
-<script>
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-
-  const trail = document.createElement('div');
-  trail.className = 'trail';
-  trail.innerText = '😹';
-  trail.style.left = e.clientX + 'px';
-  trail.style.top = e.clientY + 'px';
-  document.body.appendChild(trail);
-  setTimeout(() => trail.remove(), 1000);
-});
-</script>
-</body></html>
+  <script>
+    const galleries = [...Array(9)].map((_, i) =>
+      [1, 2, 3, 4].map(j => `assets/section${i}_img${j}.jpg`)
+    );
+    let current = 0;
+    function updateGallery() {
+      for (let i = 0; i < 9; i++) {
+        document.getElementById(`img${i}`).src = galleries[i][current];
+      }
+    }
+    function next() {
+      current = (current + 1) % 4;
+      updateGallery();
+    }
+    function prev() {
+      current = (current + 3) % 4;
+      updateGallery();
+    }
+  </script>
+</body>
+</html>
