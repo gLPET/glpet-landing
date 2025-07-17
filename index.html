@@ -2,62 +2,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>gLPET Universe</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles.css">
-    <script defer src="assets/scripts.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>gLPET Universe</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    .icons {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 16px;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    .icons.hide {
+      opacity: 0;
+    }
+    .icons img {
+      width: 28px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 80px 20px 20px;
+      text-align: left;
+    }
+    .logo {
+      width: 80px;
+    }
+    .headline {
+      font-size: 1.6em;
+      color: white;
+    }
+    .contract {
+      color: #facc15;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .vision {
+      max-width: 700px;
+      margin: 30px auto;
+      color: #fcd34d;
+      font-family: monospace;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      padding: 0 16px;
+    }
+    .how-button {
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .how-wrap {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .gallery-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 20px;
+    }
+    .gallery-row img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .handles {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.8em;
+      color: #facc15;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    #cursor {
+      position: fixed;
+      pointer-events: none;
+      font-size: 24px;
+      z-index: 10000;
+    }
+    .trail {
+      position: fixed;
+      pointer-events: none;
+      font-size: 20px;
+      opacity: 0.5;
+      z-index: 9999;
+      animation: fade 1s linear forwards;
+    }
+    @keyframes fade {
+      to {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="social-icons">
-            <a href="https://x.com/SLeocrypto"><img src="assets/x.svg" alt="X"></a>
-            <a href="https://t.me/gLOLpet"><img src="assets/telegram.svg" alt="Telegram"></a>
-            <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKRo8TrzxMqYfHBthvMwFckdpump"><img src="assets/dex.svg" alt="Dexscreener"></a>
-        </div>
-        <div class="logo-block">
-            <img src="assets/logo.png" alt="gLPET Logo" class="main-logo">
-            <h1>Welcome to the gLPET Universe</h1>
-        </div>
-        <div class="contract-address">CA: 61XV1ygYVFW42yFBjKRo8TrzxMqYfHBthvMwFckdpump</div>
-    </header>
+<div class="icons" id="iconBar">
+  <a href="https://x.com/SLeocrypto" target="_blank"><img src="assets/x.svg" /></a>
+  <a href="https://t.me/gLOLpet" target="_blank"><img src="assets/tg.svg" /></a>
+  <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump" target="_blank"><img src="assets/dex.svg" /></a>
+</div>
 
-    <main>
-        <section class="description">
-            <p>My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.<br>
-            I want to show people that in the meme market, most projects become fixated on a single character.<br>
-            Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content… and so on.</p>
-            <p>But I want to show that people can become the source of content themselves — they can shape the narrative however they want:<br>
-            funny, creative, emotional, or completely chaotic.</p>
-            <p>They don’t need to wait for a new TikTok video or a push from some big page.<br>
-            Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.<br>
-            That alone can trigger a mini-viral moment. Now imagine 1,000 people…<br>
-            That’s a new kind of Covid, right? 😹</p>
-            <p>The feed on Twitter would be flooded.<br>
-            Sure, some will try to profit from it — but regular holders will keep posting and pushing.<br>
-            <strong style="color:gold">No more just “buy and wait.” This is “buy and create.”</strong></p>
-            <button onclick="location.href='how.html'">How it works</button>
-        </section>
+<header>
+  <img src="assets/logo.png" class="logo" />
+  <div class="headline">Welcome to the gLPET Universe</div>
+</header>
 
-        <section class="gallery">
-            <!-- 9 carousels will be inserted here dynamically -->
-        </section>
-    </main>
+<div class="contract">CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</div>
 
-    <script>
-        const sections = ["Elon_Musk", "A.Tate", "Shibetoshi_Nakamoto", "Marcell", "GabrielShapiro", "Lexaprotrader", "Ram", "Bossman", "DJ_En"];
-        const gallery = document.querySelector('.gallery');
-        sections.forEach(name => {
-            const container = document.createElement("div");
-            container.className = "carousel";
-            container.innerHTML = `
-                <button class="prev">←</button>
-                <img src="assets/${name}_1.jpg" alt="${name}">
-                <button class="next">→</button>
-                <div class="caption">@${name.replace("_", "")}</div>
-            `;
-            gallery.appendChild(container);
-        });
-    </script>
-</body>
-</html>
+<div class="vision">
+My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.
+I want to show people that in the meme market, most projects become fixated on a single character.
+Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content… and so on.
+
+But I want to show that people can become the source of content themselves — they can shape the narrative however they want:
+funny, creative, emotional, or completely chaotic.
+
+They don’t need to wait for a new TikTok video or a push from some big page.
+Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.
+That alone can trigger a mini-viral moment. Now imagine 1,000 people…
+That’s a new kind of Covid, right? 😹
+
+The feed on Twitter would be flooded.
+Sure, some will try to profit from it — but regular holders will keep posting and pushing.
+No more just “buy and wait.” This is “buy and create.”
+</div>
+
+<div class="how-wrap">
+  <button class="how-button" onclick="location.href='how.html'">How it works</button>
+</div>
+<div class="gallery-row">
+<img id="img0" src="assets/Elon_Musk_10.jpg" />
+<img id="img1" src="assets/A.Tate_1.jpg" />
+<img id="img2" src="assets/Shibetoshi_nakamoto_2.png" />
+<img id="img3" src="assets/Marcell_2.jpg" />
+<img id="img4" src="assets/GabrielShapiro_2.jpg" />
+<img id="img5" src="assets/Lexaprotrader_2.jpg" />
+<img id="img6" src="assets/Ram_1.png" />
+<img id="img7" src="assets/Bossman_1.jpg" />
+<img id="img8" src="assets/DJ_En_1.jpg" />
+</div>
+<div class="handles">
+<div>@elonmusk</div>
+<div>@Cobratate</div>
+<div>@BillyM2k</div>
+<div>@MarcellxMarcell</div>
+<div>@lex_node</div>
+<div>@LexaproTrader</div>
+<div>@0xRamonos</div>
+<div>@0xBossman</div>
+<div>@thisisdjen</div>
+</div>
+<div id="cursor">😹</div>
+<script>
+const g0 = ['Elon_Musk_10.jpg', 'Elon_Musk_11.jpg', 'Elon_Musk_17.jpg', 'Elon_Musk_7.jpg'];
+const g1 = ['A.Tate_1.jpg', 'A.Tate_14.jpg', 'A.Tate_19.jpg', 'A.Tate_23.jpg'];
+const g2 = ['Shibetoshi_nakamoto_2.png', 'Shibetoshi_nakamoto_4.png', 'Shibetoshi_nakamoto_5.png', 'Shibetoshi_nakamoto_8.png'];
+const g3 = ['Marcell_2.jpg', 'Marcell_3.jpg', 'Marcell_5.jpg', 'Marcell_6.jpg'];
+const g4 = ['GabrielShapiro_2.jpg', 'GabrielShapiro_5.jpg', 'GabrielShapiro_6.jpg', 'GabrielShapiro_7.jpg'];
+const g5 = ['Lexaprotrader_2.jpg', 'Lexaprotrader_3.jpg', 'Lexaprotrader_4.jpg', 'Lexaprotrader_9.jpg'];
+const g6 = ['Ram_1.png', 'Ram_2.jpg', 'Ram_4.jpg', 'Ram_5.jpg'];
+const g7 = ['Bossman_1.jpg', 'Bossman_2.jpg', 'Bossman_5.jpg', 'Bossman_8.jpg'];
+const g8 = ['DJ_En_1.jpg', 'DJ_En_2.jpg', 'DJ_En_4.jpg', 'DJ_En_6.jpg'];
+
+let index = 0;
+function update() {
+document.getElementById('img0').src = 'assets/' + g0[index % g0.length];
+document.getElementById('img1').src = 'assets/' + g1[index % g1.length];
+document.getElementById('img2').src = 'assets/' + g2[index % g2.length];
+document.getElementById('img3').src = 'assets/' + g3[index % g3.length];
+document.getElementById('img4').src = 'assets/' + g4[index % g4.length];
+document.getElementById('img5').src = 'assets/' + g5[index % g5.length];
+document.getElementById('img6').src = 'assets/' + g6[index % g6.length];
+document.getElementById('img7').src = 'assets/' + g7[index % g7.length];
+document.getElementById('img8').src = 'assets/' + g8[index % g8.length];
+}
+function next() { index++; update(); }
+function prev() { index--; if(index<0) index=0; update(); }
+
+document.addEventListener('mousemove', e => {
+  document.getElementById('cursor').style.left = e.clientX + 'px';
+  document.getElementById('cursor').style.top = e.clientY + 'px';
+  const trail = document.createElement('div');
+  trail.className = 'trail';
+  trail.innerText = '😹';
+  trail.style.left = e.clientX + 'px';
+  trail.style.top = e.clientY + 'px';
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 1000);
+});
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('iconBar');
+  if (window.scrollY > 100) {
+    bar.classList.add('hide');
+  } else {
+    bar.classList.remove('hide');
+  }
+});
+</script>
+</body></html>
