@@ -6,6 +6,7 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
+  cursor: none; /* Убираем стандартную стрелку */
 }
 
 .header {
@@ -65,7 +66,7 @@ body {
 }
 
 .highlight-large {
-  font-size: 1.7rem; /* Увеличен на два размера */
+  font-size: 1.7rem;
 }
 
 .gallery {
@@ -90,7 +91,7 @@ body {
   align-items: center;
   width: 140px;
   height: 154px;
-  border: 2px solid #000000; /* Вернули черные границы */
+  border: 2px solid #000000;
   border-radius: 10px;
   padding: 0;
   box-sizing: border-box;
