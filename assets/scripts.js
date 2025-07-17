@@ -1,5 +1,5 @@
 // Проверка версии файла (для отладки)
-console.log("scripts.js loaded, version: 2025-07-18 00:12 CEST");
+console.log("scripts.js loaded, version: 2025-07-18 00:18 CEST");
 
 // Кастомный курсор с эмодзи
 const trail = document.getElementById('cursor-trail');
@@ -19,34 +19,34 @@ if (trail) {
     document.body.appendChild(leadEmoji);
     trailParticles.push(leadEmoji);
 
-    // Создаем хвост из дополнительных эмодзи
-    for (let i = 0; i < 5; i++) {
+    // Создаем длинный след из эмодзи
+    for (let i = 1; i <= 30; i++) {
       const tailEmoji = document.createElement('div');
       tailEmoji.textContent = '😹';
       tailEmoji.style.position = 'absolute';
-      tailEmoji.style.left = `${e.pageX - 12 + i * 10}px`;
-      tailEmoji.style.top = `${e.pageY - 12 + i * 10}px`;
-      tailEmoji.style.opacity = 1 - (i * 0.2); // Постепенное уменьшение прозрачности
+      tailEmoji.style.left = `${e.pageX - 12 - i * 5}px`; // Смещение влево для следа
+      tailEmoji.style.top = `${e.pageY - 12 - i * 5}px`;  // Смещение вверх для следа
+      tailEmoji.style.opacity = 1 - (i * 0.03); // Постепенное уменьшение прозрачности
       tailEmoji.style.transform = 'translate(-50%, -50%)';
       tailEmoji.style.pointerEvents = 'none';
       document.body.appendChild(tailEmoji);
       trailParticles.push(tailEmoji);
     }
 
-    // Управление анимацией хвоста
+    // Быстрое исчезновение следа
     trailParticles.forEach((particle, index) => {
       setTimeout(() => {
-        particle.style.transition = 'opacity 0.8s ease-out';
+        particle.style.transition = 'opacity 0.3s ease-out';
         particle.style.opacity = 0;
         setTimeout(() => {
           particle.remove();
           trailParticles = trailParticles.filter(p => p !== particle);
-        }, 800);
-      }, index * 100); // Задержка для плотности
+        }, 300);
+      }, index * 10); // Минимальная задержка для непрерывности
     });
 
-    // Ограничиваем количество частиц до 20 для длинного хвоста
-    if (trailParticles.length > 20) {
+    // Ограничиваем количество частиц до 30 для длинного следа
+    if (trailParticles.length > 30) {
       trailParticles[0].remove();
       trailParticles.shift();
     }
