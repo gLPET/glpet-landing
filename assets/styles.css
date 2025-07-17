@@ -1,114 +1,110 @@
+
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background: black;
   font-family: monospace;
   color: white;
   text-align: center;
-  cursor: none;
   overflow-x: hidden;
+  cursor: none;
 }
 
-main {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
+.logo-title {
+  margin-top: 20px;
 }
 
 .main-logo {
   width: 200px;
   height: auto;
-  margin: 0 auto 20px;
+}
+
+.contract {
+  font-size: 0.8rem;
+  color: #ccc;
 }
 
 .social-icons {
-  position: fixed;
-  top: 10px;
-  left: 10px;
   display: flex;
-  gap: 12px;
+  gap: 15px;
+  justify-content: left;
+  padding: 10px;
 }
 
 .social-icons img {
-  width: 24px;
-  height: 24px;
+  width: 20px;
 }
 
-.how-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 20px;
-  color: white;
-  border: 2px solid white;
-  background-color: transparent;
-  cursor: pointer;
-  font-family: monospace;
-  text-decoration: none;
+.description {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 0.85rem;
 }
 
-.carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
+.highlight {
+  color: yellow;
+  font-weight: bold;
 }
 
 .carousel {
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-track {
   display: flex;
   overflow: hidden;
-  gap: 10px;
-  max-width: 100%;
+  width: 220px;
 }
 
-.carousel img {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  object-fit: cover;
+.carousel-track img {
+  width: 220px;
+  height: auto;
+  transition: transform 0.5s ease;
 }
 
-.nav-button {
-  background-color: black;
-  border: 2px solid #00ff00;
-  color: #00ff00;
-  font-size: 20px;
-  padding: 10px;
+.carousel-arrow {
+  background: none;
+  color: white;
+  border: 2px solid white;
   border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 20px;
   cursor: pointer;
-  margin: 0 10px;
 }
 
 .carousel-labels {
   margin-top: 10px;
-  font-size: 12px;
-  color: white;
+  font-size: 0.75rem;
+  color: #ccc;
 }
 
-#cursor {
-  position: fixed;
-  width: 24px;
-  height: 24px;
+.how-button {
+  margin-top: 20px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  padding: 5px 15px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#cursor-trail {
+  position: absolute;
   pointer-events: none;
-  background: url("😹") center center no-repeat;
+  font-size: 24px;
   z-index: 10000;
 }
 
-#trail {
+canvas#emoji-background {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
   pointer-events: none;
-  z-index: 9999;
-}
-
-.trail-dot {
-  position: absolute;
-  font-size: 20px;
-  opacity: 0.7;
-  animation: fadeOut 1s forwards;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: scale(1.5);
-  }
 }
