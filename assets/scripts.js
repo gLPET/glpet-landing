@@ -1,53 +1,61 @@
-// Космический фон с эмодзи-животными
-const emojis = ["😹", "🐸", "🐶", "🐱", "🦊", "🐭", "🐯", "🐰"];
-function spawnEmoji() {
-  const emoji = document.createElement("div");
-  emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-  emoji.style.position = "fixed";
-  emoji.style.left = Math.random() * 100 + "vw";
-  emoji.style.top = Math.random() * 100 + "vh";
-  emoji.style.fontSize = "20px";
-  emoji.style.opacity = "0.6";
-  emoji.style.pointerEvents = "none";
-  emoji.style.zIndex = "1";
+
+// Кастомный курсор
+document.addEventListener('mousemove', (e) => {
+  const trail = document.getElementById('cursor-trail');
+  const emoji = document.createElement('div');
+  emoji.textContent = '😹';
+  emoji.style.position = 'absolute';
+  emoji.style.left = e.pageX + 'px';
+  emoji.style.top = e.pageY + 'px';
   document.body.appendChild(emoji);
-  setTimeout(() => emoji.remove(), 4000);
-}
-setInterval(spawnEmoji, 500); // быстрее
-
-// Курсор 😹 с длинным хвостом
-const cursor = document.getElementById("cursor");
-const trail = document.getElementById("trail");
-
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.pageX + "px";
-  cursor.style.top = e.pageY + "px";
-
-  const dot = document.createElement("div");
-  dot.className = "trail-dot";
-  dot.style.left = e.pageX + "px";
-  dot.style.top = e.pageY + "px";
-  dot.innerText = "😹";
-  trail.appendChild(dot);
-
-  setTimeout(() => dot.remove(), 1000);
+  setTimeout(() => {
+    emoji.remove();
+  }, 800);
 });
 
 // Галерея
-const images = document.querySelectorAll(".carousel img");
 let currentIndex = 0;
+const track = document.querySelector('.carousel-track');
+const slides = document.querySelectorAll('.carousel-track img');
 
-document.getElementById("next").onclick = () => {
-  currentIndex = (currentIndex + 1) % images.length;
+document.querySelector('.carousel-arrow.left').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   updateCarousel();
-};
+});
 
-document.getElementById("prev").onclick = () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
+document.querySelector('.carousel-arrow.right').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
   updateCarousel();
-};
+});
 
 function updateCarousel() {
-  const offset = -currentIndex * 130; // 120px width + 10px gap
-  document.querySelector(".carousel").style.transform = `translateX(${offset}px)`;
+  track.style.transform = `translateX(-${220 * currentIndex}px)`;
 }
+
+// Эмодзи-животные
+const canvas = document.getElementById('emoji-background');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const emojis = ['😹', '🐶', '😺', '🙀', '🐸'];
+let particles = [];
+
+function EmojiParticle() {
+  this.x = Math.random() * canvas.width;
+  this.y = Math.random() * canvas.height;
+  this.emoji = emojis[Math.floor(Math.random() * emojis.length)];
+  this.life = 200 + Math.random() * 100;
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles = particles.filter(p => p.life-- > 0);
+  if (Math.random() < 0.5) particles.push(new EmojiParticle());
+  particles.forEach(p => {
+    ctx.globalAlpha = p.life / 200;
+    ctx.font = '24px serif';
+    ctx.fillText(p.emoji, p.x, p.y);
+  });
+  requestAnimationFrame(animate);
+}
+animate();
