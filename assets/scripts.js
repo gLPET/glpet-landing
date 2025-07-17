@@ -1,5 +1,5 @@
 // Проверка версии файла (для отладки)
-console.log("scripts.js loaded, version: 2025-07-17 23:45 CEST");
+console.log("scripts.js loaded, version: 2025-07-18 00:12 CEST");
 
 // Кастомный курсор с эмодзи
 const trail = document.getElementById('cursor-trail');
@@ -7,25 +7,46 @@ let trailParticles = [];
 
 if (trail) {
   document.addEventListener('mousemove', (e) => {
-    const emoji = document.createElement('div');
-    emoji.textContent = '😹';
-    emoji.style.position = 'absolute';
-    emoji.style.left = `${e.pageX - 12}px`;
-    emoji.style.top = `${e.pageY - 12}px`;
-    emoji.style.opacity = 1;
-    emoji.style.transition = 'opacity 1.2s ease-out, transform 0.4s ease-out';
-    emoji.style.transform = 'translate(-50%, -50%)';
-    emoji.style.pointerEvents = 'none';
-    document.body.appendChild(emoji);
-    trailParticles.push(emoji);
+    // Создаем ведущий эмодзи как основной курсор
+    const leadEmoji = document.createElement('div');
+    leadEmoji.textContent = '😹';
+    leadEmoji.style.position = 'absolute';
+    leadEmoji.style.left = `${e.pageX - 12}px`;
+    leadEmoji.style.top = `${e.pageY - 12}px`;
+    leadEmoji.style.opacity = 1;
+    leadEmoji.style.transform = 'translate(-50%, -50%)';
+    leadEmoji.style.pointerEvents = 'none';
+    document.body.appendChild(leadEmoji);
+    trailParticles.push(leadEmoji);
 
-    setTimeout(() => {
-      emoji.style.opacity = 0;
-      setTimeout(() => emoji.remove(), 1200);
-      trailParticles = trailParticles.filter(p => p !== emoji);
-    }, 2000);
+    // Создаем хвост из дополнительных эмодзи
+    for (let i = 0; i < 5; i++) {
+      const tailEmoji = document.createElement('div');
+      tailEmoji.textContent = '😹';
+      tailEmoji.style.position = 'absolute';
+      tailEmoji.style.left = `${e.pageX - 12 + i * 10}px`;
+      tailEmoji.style.top = `${e.pageY - 12 + i * 10}px`;
+      tailEmoji.style.opacity = 1 - (i * 0.2); // Постепенное уменьшение прозрачности
+      tailEmoji.style.transform = 'translate(-50%, -50%)';
+      tailEmoji.style.pointerEvents = 'none';
+      document.body.appendChild(tailEmoji);
+      trailParticles.push(tailEmoji);
+    }
 
-    if (trailParticles.length > 12) {
+    // Управление анимацией хвоста
+    trailParticles.forEach((particle, index) => {
+      setTimeout(() => {
+        particle.style.transition = 'opacity 0.8s ease-out';
+        particle.style.opacity = 0;
+        setTimeout(() => {
+          particle.remove();
+          trailParticles = trailParticles.filter(p => p !== particle);
+        }, 800);
+      }, index * 100); // Задержка для плотности
+    });
+
+    // Ограничиваем количество частиц до 20 для длинного хвоста
+    if (trailParticles.length > 20) {
       trailParticles[0].remove();
       trailParticles.shift();
     }
