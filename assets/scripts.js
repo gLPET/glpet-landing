@@ -1,4 +1,4 @@
-// Кастомный курсор с эмодзи (без стандартного курсора)
+// Кастомный курсор с эмодзи
 const trail = document.getElementById('cursor-trail');
 let trailParticles = [];
 
@@ -26,30 +26,25 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// Галерея с корректным переключением фотографий
+// Автоматическая галерея с переключением каждые 3 секунды
 let currentImageIndex = 0;
-const cells = document.querySelectorAll('.gallery-cell');
 
 function updateGallery() {
+  const cells = document.querySelectorAll('.gallery-cell');
   cells.forEach(cell => {
     const cellImages = cell.querySelectorAll('.gallery-image');
     cellImages.forEach((img, i) => {
-      img.classList.toggle('active', (i === currentImageIndex));
+      img.classList.toggle('active', i === currentImageIndex);
     });
   });
 }
 
-document.querySelector('.arrow-wrapper.left .gallery-arrow').addEventListener('click', () => {
-  currentImageIndex = (currentImageIndex - 1 + 4) % 4;
-  updateGallery();
-});
-
-document.querySelector('.arrow-wrapper.right .gallery-arrow').addEventListener('click', () => {
+setInterval(() => {
   currentImageIndex = (currentImageIndex + 1) % 4;
   updateGallery();
-});
+}, 3000); // Переключение каждые 3 секунды
 
-// Эмодзи-звезды с реалистичной анимацией
+// Эмодзи-звезды с медленным появлением и быстрым исчезновением
 const canvas = document.getElementById('emoji-background');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -75,8 +70,8 @@ function animate() {
   if (Math.random() < 0.07) particles.push(new EmojiParticle());
 
   particles.forEach(p => {
-    if (p.alpha < 1 && p.life > 100) p.alpha += 0.005;
-    else if (p.life < 50) p.alpha -= 0.005;
+    if (p.alpha < 1 && p.life > 150) p.alpha += 0.003; // Медленное появление
+    else if (p.life < 50) p.alpha -= 0.02; // Быстрое исчезновение
     p.size += p.growth;
     if (p.size > 30) p.growth = -p.growth;
     p.life--;
