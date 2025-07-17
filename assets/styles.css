@@ -10,27 +10,29 @@ body {
 
 .header {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 10px;
   position: relative;
 }
 
-.main-logo {
-  width: 150px; /* Увеличил размер логотипа */
-  height: auto;
-  margin-right: 20px;
-}
-
 .header-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.main-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .logo-title {
   margin: 0;
-  font-size: 2.5rem; /* Увеличил заголовок */
-  text-align: left;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 .social-contract {
@@ -41,18 +43,18 @@ body {
 }
 
 .social-icons img {
-  width: 25px; /* Немного увеличил иконки */
+  width: 25px;
 }
 
 .contract {
   font-size: 0.9rem;
   color: #ccc;
-  text-align: left;
+  text-align: center;
 }
 
 .description {
   max-width: 900px;
-  margin: 20px auto 0; /* Поднимаем текст выше, убрав нижний отступ */
+  margin: 20px auto 0;
   font-size: 0.85rem;
   line-height: 1.5;
 }
@@ -62,8 +64,12 @@ body {
   font-weight: bold;
 }
 
+.highlight-large {
+  font-size: 1.7rem; /* Увеличен на два размера */
+}
+
 .gallery {
-  margin: 10px auto 0; /* Поднимаем галерею выше */
+  margin: 10px auto 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -84,7 +90,7 @@ body {
   align-items: center;
   width: 140px;
   height: 154px;
-  border: 2px solid white; /* Белые рамки */
+  border: 2px solid #000000; /* Вернули черные границы */
   border-radius: 10px;
   padding: 0;
   box-sizing: border-box;
