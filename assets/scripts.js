@@ -1,5 +1,5 @@
 // Проверка версии файла (для отладки)
-console.log("scripts.js loaded, version: 2025-07-17");
+console.log("scripts.js loaded, version: 2025-07-17 23:45 CEST");
 
 // Кастомный курсор с эмодзи
 const trail = document.getElementById('cursor-trail');
@@ -41,10 +41,15 @@ function updateGallery() {
   const cells = document.querySelectorAll('.gallery-cell');
   if (cells.length > 0) {
     cells.forEach((cell, cellIndex) => {
-      const cellImages = cell.querySelectorAll('.gallery-image');
-      cellImages.forEach((img, i) => {
-        img.classList.toggle('active', i === currentImageIndices[cellIndex]);
-      });
+      const imageContainer = cell.querySelector('.image-container');
+      if (imageContainer) {
+        const cellImages = imageContainer.querySelectorAll('.gallery-image');
+        cellImages.forEach((img, i) => {
+          img.classList.toggle('active', i === currentImageIndices[cellIndex]);
+        });
+      } else {
+        console.error('Image container not found in cell', cellIndex);
+      }
     });
     console.log('Gallery updated, current indices:', currentImageIndices);
   } else {
