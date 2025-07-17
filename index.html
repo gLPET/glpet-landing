@@ -4,49 +4,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>gLPET | Laughing Pets of Web3</title>
+  <title>gLPET | Meme-powered Petverse</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: sans-serif;
-      background: #0c0c0c;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+    canvas {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    header {
+      padding: 40px 20px 20px;
+      text-align: center;
+    }
+    header img {
+      max-width: 120px;
+      margin-bottom: 10px;
     }
     h1 {
-      font-size: 3em;
-      margin-bottom: 0.2em;
+      font-size: 2.8em;
       color: #fcd34d;
+      margin: 0;
     }
-    p {
-      max-width: 600px;
-      text-align: center;
+    p.tagline {
       font-size: 1.2em;
-      margin-bottom: 2em;
+      color: #ddd;
+      margin-top: 10px;
     }
-    .links a {
+    section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    section h2 {
       color: #38bdf8;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
     }
-    .logo {
-      max-width: 200px;
-      margin-bottom: 30px;
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid #333;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #888;
+      padding: 40px 20px;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      .gallery img { width: 100px; height: 100px; }
     }
   </style>
 </head>
 <body>
-  <img src="https://i.ibb.co/3m3JDzX/glpet-logo.png" alt="gLPET Logo" class="logo" />
-  <h1>Welcome to gLPET</h1>
-  <p>The meme-powered pet movement. AI + emotion + community.</p>
-  <div class="links">
-    <a href="https://x.com/glpetcoin" target="_blank">Twitter</a>
-    <a href="https://t.me/glpet" target="_blank">Telegram</a>
-    <a href="https://glpet.lol" target="_blank">glpet.lol</a>
-  </div>
+  <canvas id="emojiSky"></canvas>
+
+  <header>
+    <img src="https://i.ibb.co/3m3JDzX/glpet-logo.png" alt="gLPET logo" />
+    <h1>Welcome to gLPET</h1>
+    <p class="tagline">The meme-powered pet movement. AI + emotion + community.</p>
+  </header>
+
+  <section>
+    <h2>My Vision</h2>
+    <p>
+      My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.
+      I want to show people that in the meme market, most projects become fixated on a single character.
+      Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content… and so on.
+    </p>
+    <p>
+      But I want to show that people can become the source of content themselves — they can shape the narrative however they want:
+      funny, creative, emotional, or completely chaotic.
+    </p>
+    <p>
+      They don’t need to wait for a new TikTok video or a push from some big page.
+      Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.
+      That alone can trigger a mini-viral moment. Now imagine 1,000 people…
+      That’s a new kind of Covid, right? 😹
+    </p>
+    <p>
+      The feed on Twitter would be flooded.
+      Sure, some will try to profit from it — but regular holders will keep posting and pushing.
+      No more just “buy and wait.” This is “buy and create.”
+    </p>
+  </section>
+
+  <section>
+    <h2>gLPET Gallery</h2>
+    <div class="gallery">
+      <img src="https://i.ibb.co/p1VfnDF/glpet1.png" alt="gLPET 1">
+      <img src="https://i.ibb.co/M7sy0td/glpet2.png" alt="gLPET 2">
+      <img src="https://i.ibb.co/pvFcKZb/glpet3.png" alt="gLPET 3">
+      <img src="https://i.ibb.co/6tBXB94/glpet4.png" alt="gLPET 4">
+      <img src="https://i.ibb.co/r0Qbhcm/glpet5.png" alt="gLPET 5">
+      <img src="https://i.ibb.co/1mBdQct/glpet6.png" alt="gLPET 6">
+    </div>
+  </section>
+
+  <footer>
+    Built with ❤️ by gLPET team. Powered by memes & emotion.
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('emojiSky');
+    const ctx = canvas.getContext('2d');
+    const emojis = ['😹', '🐶', '🐱', '🦊', '🐸', '🐵', '🦁', '🐯'];
+    const stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function randomStar() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: 24 + Math.random() * 12,
+        emoji: emojis[Math.floor(Math.random() * emojis.length)],
+        ttl: 60 + Math.random() * 120
+      };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const s of stars) {
+        ctx.font = s.size + 'px serif';
+        ctx.fillText(s.emoji, s.x, s.y);
+        s.ttl -= 1;
+      }
+      while (stars.length < 20) stars.push(randomStar());
+      for (let i = stars.length - 1; i >= 0; i--) {
+        if (stars[i].ttl <= 0) stars.splice(i, 1);
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </body>
 </html>
