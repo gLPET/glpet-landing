@@ -1,8 +1,7 @@
-
 body {
   margin: 0;
   padding: 0;
-  background: black;
+  background: linear-gradient(135deg, #0a0a1a, #1a1a3a, #2a2a5a);
   font-family: monospace;
   color: white;
   text-align: center;
@@ -12,6 +11,7 @@ body {
 
 .logo-title {
   margin-top: 20px;
+  font-size: 1.5rem;
 }
 
 .main-logo {
@@ -27,7 +27,7 @@ body {
 .social-icons {
   display: flex;
   gap: 15px;
-  justify-content: left;
+  justify-content: center;
   padding: 10px;
 }
 
@@ -39,6 +39,7 @@ body {
   max-width: 900px;
   margin: 0 auto;
   font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .highlight {
@@ -46,27 +47,31 @@ body {
   font-weight: bold;
 }
 
-.carousel {
+.gallery {
   margin-top: 20px;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
-.carousel-track {
-  display: flex;
-  overflow: hidden;
-  width: 220px;
+.gallery-track {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
 }
 
-.carousel-track img {
-  width: 220px;
+.gallery-track img {
+  width: 100%;
   height: auto;
-  transition: transform 0.5s ease;
+  max-height: 200px;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
 }
 
-.carousel-arrow {
+.gallery-arrow {
   background: none;
   color: white;
   border: 2px solid white;
@@ -74,12 +79,16 @@ body {
   padding: 5px 10px;
   font-size: 20px;
   cursor: pointer;
+  margin: 10px;
 }
 
-.carousel-labels {
-  margin-top: 10px;
-  font-size: 0.75rem;
-  color: #ccc;
+.gallery-switch {
+  background: none;
+  color: white;
+  border: 2px solid white;
+  padding: 5px 15px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .how-button {
@@ -95,7 +104,6 @@ body {
 #cursor-trail {
   position: absolute;
   pointer-events: none;
-  font-size: 24px;
   z-index: 10000;
 }
 
@@ -105,6 +113,6 @@ canvas#emoji-background {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
