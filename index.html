@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>gLPET Universe</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles.css">
-    <script defer src="assets/scripts.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gLPET Universe</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <script defer src="assets/scripts.js"></script>
 </head>
 <body>
-    <header>
-        <div class="social-icons">
-            <a href="https://x.com/SLeocrypto"><img src="assets/x.svg" alt="X"></a>
-            <a href="https://t.me/gLOLpet"><img src="assets/telegram.svg" alt="Telegram"></a>
-            <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKRo8TrzxMqYfHBthvMwFckdpump"><img src="assets/dex.svg" alt="Dexscreener"></a>
+  <header>
+    <div class="social-icons">
+      <a href="https://x.com/SLeocrypto" target="_blank"><img src="assets/x.svg" alt="X"></a>
+      <a href="https://t.me/gLOLpet" target="_blank"><img src="assets/tg.svg" alt="Telegram"></a>
+      <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump" target="_blank"><img src="assets/dex.svg" alt="Dex"></a>
+    </div>
+  </header>
+
+  <main>
+    <div class="logo-title">
+      <img src="assets/logo.png" alt="Logo" class="main-logo">
+      <h1>Welcome to the gLPET Universe</h1>
+      <p class="contract">CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</p>
+    </div>
+
+    <div class="manifesto">
+      <p>My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.</p>
+      <p>I want to show people that in the meme market, most projects become fixated on a single character.</p>
+      <p>Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content... and so on.</p>
+      <p>But I want to show that people can become the source of content themselves — they can shape the narrative however they want: funny, creative, emotional, or completely chaotic.</p>
+      <p>They don’t need to wait for a new TikTok video or a push from some big page. Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images. That alone can trigger a mini-viral moment. Now imagine 1,000 people… That’s a new kind of Covid, right? 😺</p>
+      <p>The feed on Twitter would be flooded. Sure, some will try to profit from it — but regular holders will keep posting and pushing.</p>
+      <p><strong><span class="highlight">No more just “buy and wait.” This is “buy and create.”</span></strong></p>
+    </div>
+
+    <button class="cta-button" onclick="location.href='how-it-works.html'">How it works</button>
+
+    <div class="carousel-container">
+      <button class="carousel-btn left" onclick="changeImage(-1)">&#8592;</button>
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/Elon_Musk_1.jpg" alt="@elonmusk"><p>@elonmusk</p></div>
+          <div class="carousel-slide"><img src="assets/A.Tate_1.jpg" alt="@Cobratate"><p>@Cobratate</p></div>
+          <div class="carousel-slide"><img src="assets/BillyM2k_1.jpg" alt="@BillyM2k"><p>@BillyM2k</p></div>
+          <div class="carousel-slide"><img src="assets/Marcell_1.jpg" alt="@MarcellxMarcell"><p>@MarcellxMarcell</p></div>
+          <div class="carousel-slide"><img src="assets/lex_node_1.jpg" alt="@lex_node"><p>@lex_node</p></div>
+          <div class="carousel-slide"><img src="assets/Ram_1.jpg" alt="@0xRamonos"><p>@0xRamonos</p></div>
+          <div class="carousel-slide"><img src="assets/Bossman_1.jpg" alt="@0xBossman"><p>@0xBossman</p></div>
+          <div class="carousel-slide"><img src="assets/DJ_En_1.jpg" alt="@thisisdjen"><p>@thisisdjen</p></div>
         </div>
-        <div class="logo-block">
-            <img src="assets/logo.png" alt="gLPET Logo" class="main-logo">
-            <h1>Welcome to the gLPET Universe</h1>
-        </div>
-        <div class="contract-address">CA: 61XV1ygYVFW42yFBjKRo8TrzxMqYfHBthvMwFckdpump</div>
-    </header>
+      </div>
+      <button class="carousel-btn right" onclick="changeImage(1)">&#8594;</button>
+    </div>
+  </main>
 
-    <main>
-        <section class="description">
-            <p>My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.<br>
-            I want to show people that in the meme market, most projects become fixated on a single character.<br>
-            Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content… and so on.</p>
-            <p>But I want to show that people can become the source of content themselves — they can shape the narrative however they want:<br>
-            funny, creative, emotional, or completely chaotic.</p>
-            <p>They don’t need to wait for a new TikTok video or a push from some big page.<br>
-            Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.<br>
-            That alone can trigger a mini-viral moment. Now imagine 1,000 people…<br>
-            That’s a new kind of Covid, right? 😹</p>
-            <p>The feed on Twitter would be flooded.<br>
-            Sure, some will try to profit from it — but regular holders will keep posting and pushing.<br>
-            <strong style="color:gold">No more just “buy and wait.” This is “buy and create.”</strong></p>
-            <button onclick="location.href='how.html'">How it works</button>
-        </section>
-
-        <section class="gallery">
-            <!-- 9 carousels will be inserted here dynamically -->
-        </section>
-    </main>
-
-    <script>
-        const sections = ["Elon_Musk", "A.Tate", "Shibetoshi_Nakamoto", "Marcell", "GabrielShapiro", "Lexaprotrader", "Ram", "Bossman", "DJ_En"];
-        const gallery = document.querySelector('.gallery');
-        sections.forEach(name => {
-            const container = document.createElement("div");
-            container.className = "carousel";
-            container.innerHTML = `
-                <button class="prev">←</button>
-                <img src="assets/${name}_1.jpg" alt="${name}">
-                <button class="next">→</button>
-                <div class="caption">@${name.replace("_", "")}</div>
-            `;
-            gallery.appendChild(container);
-        });
-    </script>
+  <canvas id="emoji-canvas"></canvas>
 </body>
 </html>
