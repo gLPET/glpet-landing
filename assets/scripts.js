@@ -26,24 +26,24 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// Автоматическая галерея с переключением каждые 3 секунды
-let currentImageIndex = 0;
+// Автоматическая галерея с синхронным переключением
+let currentImageIndices = Array.from({ length: 9 }, () => 0); // Массив индексов для 9 ячеек
 
 function updateGallery() {
   const cells = document.querySelectorAll('.gallery-cell');
-  cells.forEach(cell => {
+  cells.forEach((cell, cellIndex) => {
     const cellImages = cell.querySelectorAll('.gallery-image');
     cellImages.forEach((img, i) => {
-      img.classList.toggle('active', i === currentImageIndex);
+      img.classList.toggle('active', i === currentImageIndices[cellIndex]);
     });
   });
 }
 
-// Установка начального состояния
+// Установка начального состояния и автоматическое переключение
 document.addEventListener('DOMContentLoaded', () => {
   updateGallery(); // Показать первую картинку при загрузке
   setInterval(() => {
-    currentImageIndex = (currentImageIndex + 1) % 4;
+    currentImageIndices = currentImageIndices.map(index => (index + 1) % 4); // Синхронное увеличение индексов
     updateGallery();
   }, 3000); // Переключение каждые 3 секунды
 });
