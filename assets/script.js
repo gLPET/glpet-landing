@@ -1,70 +1,85 @@
-// scripts.js — логика фона, курсора и каруселей
+const galleryData = [
+  {
+    name: "Elon Musk",
+    handle: "@elonmusk",
+    images: ["Marcell_2.jpg", "Marcell_3.jpg", "Marcell_5.jpg"]
+  },
+  {
+    name: "A.Tate",
+    handle: "@Cobratate",
+    images: ["Ram_2.jpg", "Ram_4.jpg", "Ram_5.jpg"]
+  },
+  {
+    name: "Shibetoshi",
+    handle: "@BillyM2k",
+    images: ["Shibetoshi_nakamoto_2.png", "Shibetoshi_nakamoto_4.png", "Shibetoshi_nakamoto_5.png"]
+  },
+  {
+    name: "Marcell",
+    handle: "@MarcellxMarcell",
+    images: ["Shibetoshi_nakamoto_8.png", "Marcell_6.jpg"]
+  },
+  {
+    name: "GabrielShapiro",
+    handle: "@lex_node",
+    images: ["logo.png"]
+  },
+  {
+    name: "LexaproTrader",
+    handle: "@LexaproTrader",
+    images: ["logo.png"]
+  },
+  {
+    name: "Ram",
+    handle: "@0xRamonos",
+    images: ["logo.png"]
+  },
+  {
+    name: "Bossman",
+    handle: "@0xBossman",
+    images: ["logo.png"]
+  },
+  {
+    name: "DJ.En",
+    handle: "@thisisdjen",
+    images: ["logo.png"]
+  }
+];
 
-// === Космический фон с эмодзи ===
-const canvas = document.getElementById("emoji-canvas");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+let currentIndex = 0;
 
-const emojis = [“😺”,“🐶”,“🐱”,“😻”,“🐯”,“🐺”];
-let stars = [];
+function renderGallery() {
+  const container = document.getElementById("gallery-container");
+  container.innerHTML = "";
 
-function spawnEmoji() {
-  const x = Math.random() * canvas.width;
-  const y = Math.random() * canvas.height;
-  const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-  stars.push({ emoji, x, y, life: 60 });
-}
+  galleryData.forEach((item, i) => {
+    const image = document.createElement("img");
+    image.src = `assets/${item.images[currentIndex % item.images.length]}`;
+    image.alt = item.name;
+    image.style.maxWidth = "120px";
+    image.style.margin = "10px auto";
 
-function drawEmojis() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  stars.forEach((s) => {
-    ctx.font = "20px serif";
-    ctx.fillText(s.emoji, s.x, s.y);
-    s.life--;
+    const label = document.createElement("div");
+    label.textContent = item.handle;
+    label.style.fontSize = "12px";
+    label.style.marginBottom = "20px";
+
+    const block = document.createElement("div");
+    block.appendChild(image);
+    block.appendChild(label);
+
+    container.appendChild(block);
   });
-  stars = stars.filter((s) => s.life > 0);
 }
 
-setInterval(() => {
-  spawnEmoji();
-  drawEmojis();
-}, 150);
-
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+document.querySelector(".gallery-prev").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + galleryData[0].images.length) % galleryData[0].images.length;
+  renderGallery();
 });
 
-
-// === Кастомный курсор со шлейфом ===
-const trail = [];
-document.addEventListener("mousemove", (e) => {
-  const el = document.createElement("div");
-  el.textContent = "😺";
-  el.className = "custom-cursor";
-  el.style.left = `${e.pageX}px`;
-  el.style.top = `${e.pageY}px`;
-  document.body.appendChild(el);
-  trail.push(el);
-  setTimeout(() => {
-    el.remove();
-    trail.shift();
-  }, 800);
+document.querySelector(".gallery-next").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % galleryData[0].images.length;
+  renderGallery();
 });
 
-
-// === Карусель (универсальная синхронная) ===
-let index = 1;
-function changeImage(dir) {
-  const slides = document.querySelectorAll(".carousel-slide img");
-  index += dir;
-  if (index > 10) index = 1;
-  if (index < 1) index = 10;
-
-  slides.forEach((img) => {
-    const src = img.src;
-    const base = src.substring(0, src.lastIndexOf("_") + 1);
-    img.src = base + index + ".jpg";
-  });
-}
+document.addEventListener("DOMContentLoaded", renderGallery);
