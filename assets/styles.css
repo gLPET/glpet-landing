@@ -81,4 +81,11 @@ button, .how-it-works-btn {
     width: 24px;
     height: 24px;
   }
+/* Ограничение логотипа по размеру */
+.main-logo {
+    max-width: min(40vw, 300px);
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+  }
 }
