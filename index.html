@@ -1,162 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gLPET Universe</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
-      font-family: monospace;
-      overflow-x: hidden;
-    }
-    .emoji-star {
-      position: fixed;
-      font-size: 20px;
-      animation: float 4s ease-in-out infinite;
-      opacity: 0;
-    }
-    @keyframes float {
-      0% { opacity: 0; transform: scale(0.8); }
-      25% { opacity: 1; transform: scale(1.1); }
-      75% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(0.8); }
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      z-index: 10;
-    }
-    header svg, header img.icon {
-      height: 24px;
-      margin-right: 15px;
-    }
-    header img.icon:hover {
-      opacity: 0.7;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 80px;
-    }
-    .logo img {
-      height: 40px;
-      margin-right: 20px;
-    }
-    h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    .container {
-      text-align: justify;
-      max-width: 800px;
-      margin: 30px auto;
-    }
-    .contract {
-      color: gold;
-      text-align: center;
-      margin: 10px 0;
-      font-weight: bold;
-    }
-    .button {
-      display: block;
-      margin: 20px auto;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-    .gallery {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 40px auto 60px;
-      max-width: 1200px;
-    }
-    .gallery-item {
-      width: 100px;
-      text-align: center;
-    }
-    .gallery-item img {
-      width: 100px;
-      height: 100px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-    .gallery-item p {
-      font-size: 12px;
-      color: white;
-      margin-top: 5px;
-    }
-    .highlighted {
-      color: gold;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div>
-      <a href="https://x.com/SLeocrypto"><img src="assets/x.svg" class="icon" /></a>
-      <a href="https://t.me/gLOLpet"><img src="assets/tg.svg" class="icon" /></a>
-      <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump"><img src="assets/dex.svg" class="icon" /></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gLPET Universe</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        font-family: 'VT323', monospace;
+        color: white;
+        overflow-x: hidden;
+      }
+      .container {
+        text-align: justify;
+        max-width: 800px;
+        margin: 80px auto 40px;
+        padding: 20px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .logo img {
+        height: 48px;
+      }
+      .header {
+        text-align: center;
+      }
+      .ca {
+        color: #ffcc00;
+        text-align: center;
+        font-size: 1em;
+        margin-top: -5px;
+      }
+      .highlight {
+        color: #ffcc00;
+        font-weight: bold;
+      }
+      .button {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 8px 16px;
+        cursor: pointer;
+        margin: 30px auto;
+        display: block;
+        border-radius: 6px;
+      }
+      .gallery-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 16px;
+        margin: 40px 20px;
+        overflow: hidden;
+      }
+      .card {
+        text-align: center;
+        width: 100px;
+        flex-shrink: 0;
+      }
+      .card img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 4px;
+      }
+      .card a {
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+      }
+      .card a:hover {
+        text-decoration: underline;
+      }
+      .arrows {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 60px;
+      }
+      .arrow {
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+      }
+      .emoji {
+        position: fixed;
+        font-size: 24px;
+        pointer-events: none;
+        animation: fade 2s ease-in-out forwards;
+      }
+      @keyframes fade {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.1); }
+        100% { opacity: 0; transform: scale(0.5); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <a href="https://x.com/SLeocrypto"><img src="assets/x.svg" /></a>
+      <a href="https://t.me/gLOLpet"><img src="assets/tg.svg" /></a>
+      <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump"><img src="assets/dex.svg" /></a>
     </div>
-  </header>
 
-  <div class="logo">
-    <img src="logo.png" alt="gLPET Logo" />
-    <h1>Welcome to the gLPET Universe</h1>
-  </div>
-  <p class="contract">CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</p>
+    <div class="header">
+      <img src="logo.png" alt="Logo" width="60" />
+      <h1>Welcome to the gLPET Universe</h1>
+      <p class="ca">CA: <span class="highlight">61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</span></p>
+    </div>
 
-  <div class="container">
-    <p>My main vision is to become <em>OG</em>, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.</p>
-    <p>I want to show people that in the meme market, most projects become fixated on a single character.<br>Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content... and so on.</p>
-    <p>But I want to show that people can become the source of content themselves — they can shape the narrative however they want:<br>funny, creative, emotional, or completely chaotic.</p>
-    <p>They don’t need to wait for a new TikTok video or a push from some big page.<br>Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.<br>That alone can trigger a mini-viral moment. Now imagine 1,000 people…<br>That’s a new kind of Covid, right? 😹</p>
-    <p>The feed on Twitter would be flooded.<br>Sure, some will try to profit from it — but regular holders will keep posting and pushing.</p>
-    <p class="highlighted">No more just “buy and wait.” This is “buy and create.”</p>
-  </div>
+    <div class="container">
+      <p>My main vision is to become <em>OG</em>, and similar projects ($michi, giko, selfie e t.c.) – but with a different message.<br>
+      I want to show people that in the meme market, most projects become fixated on a single character. Holders start depending on it – waiting for what the owner will do, what the dev will announce, waiting for content… and so on.<br><br>
+      But I want to show that people can become the source of content themselves — they can shape the narrative however they want: funny, creative, emotional, or completely chaotic.<br><br>
+      They don’t need to wait for a new TikTok video or a push from some big page. Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images. That alone can trigger a mini-viral moment. Now imagine 1,000 people…<br>
+      That’s a new kind of Covid, right? 😹<br><br>
+      The feed on Twitter would be flooded. Sure, some will try to profit from it — but regular holders will keep posting and pushing.<br><br>
+      <span class="highlight">No more just “buy and wait.” This is “buy and create.”</span>
+      </p>
+    </div>
 
-  <button class="button" onclick="location.href='how-it-works.html'">How it works</button>
+    <button class="button">How it works</button>
 
-  <div class="gallery">
-    <div class="gallery-item"><img src="assets/Elon_Musk_7.jpg" /><p>@elonmusk</p></div>
-    <div class="gallery-item"><img src="assets/A.Tate_19.jpg" /><p>@Cobratate</p></div>
-    <div class="gallery-item"><img src="assets/Shibetoshi_nakamoto_2.jpg" /><p>@BillyM2k</p></div>
-    <div class="gallery-item"><img src="assets/Marcell_5.jpg" /><p>@MarcellxMarcell</p></div>
-    <div class="gallery-item"><img src="assets/GabrielShapiro_6.jpg" /><p>@lex_node</p></div>
-    <div class="gallery-item"><img src="assets/Lexaprotrader_4.jpg" /><p>@LexaproTrader</p></div>
-    <div class="gallery-item"><img src="assets/Ram_2.jpg" /><p>@0xRamonos</p></div>
-    <div class="gallery-item"><img src="assets/Bossman_8.jpg" /><p>@0xBossman</p></div>
-    <div class="gallery-item"><img src="assets/DJ_En_4.jpg" /><p>@thisisdjen</p></div>
-  </div>
+    <div class="arrows">
+      <div class="arrow" onclick="scrollGallery(-1)">&#8592;</div>
+      <div class="arrow" onclick="scrollGallery(1)">&#8594;</div>
+    </div>
 
-  <script>
-    const emojis = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯'];
-    function createEmoji() {
-      const emoji = document.createElement('div');
-      emoji.className = 'emoji-star';
-      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * window.innerWidth + 'px';
-      emoji.style.top = Math.random() * window.innerHeight + 'px';
-      document.body.appendChild(emoji);
-      setTimeout(() => document.body.removeChild(emoji), 4000);
-    }
-    setInterval(createEmoji, 300);
-  </script>
-</body>
+    <div class="gallery-wrapper" id="gallery">
+      <div class="card"><img src="assets/Elon_Musk_7.jpg" /><a href="https://x.com/elonmusk">@elonmusk</a></div>
+      <div class="card"><img src="assets/A.Tate_14.jpg" /><a href="https://x.com/Cobratate">@Cobratate</a></div>
+      <div class="card"><img src="assets/Shibetoshi_nakamoto_2.png" /><a href="https://x.com/BillyM2k">@BillyM2k</a></div>
+      <div class="card"><img src="assets/Marcell_3.jpg" /><a href="https://x.com/MarcellxMarcell">@MarcellxMarcell</a></div>
+      <div class="card"><img src="assets/GabrielShapiro_7.jpg" /><a href="https://x.com/lex_node">@lex_node</a></div>
+      <div class="card"><img src="assets/Lexaprotrader_9.jpg" /><a href="https://x.com/LexaproTrader">@LexaproTrader</a></div>
+      <div class="card"><img src="assets/Ram_4.jpg" /><a href="https://x.com/0xRamonos">@0xRamonos</a></div>
+      <div class="card"><img src="assets/Bossman_8.jpg" /><a href="https://x.com/0xBossman">@0xBossman</a></div>
+      <div class="card"><img src="assets/DJ_En_6.jpg" /><a href="https://x.com/thisisdjen">@thisisdjen</a></div>
+    </div>
+
+    <script>
+      const gallery = document.getElementById('gallery');
+      let scrollPosition = 0;
+      function scrollGallery(direction) {
+        const scrollAmount = 120;
+        scrollPosition += scrollAmount * direction;
+        gallery.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+      }
+
+      const emojis = ["🐶","😺","🐭","🦊","🐻","🐵","🐸"];
+      setInterval(() => {
+        const emoji = document.createElement('div');
+        emoji.classList.add('emoji');
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * window.innerWidth + 'px';
+        emoji.style.top = Math.random() * window.innerHeight + 'px';
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 2000);
+      }, 200);
+    </script>
+  </body>
 </html>
