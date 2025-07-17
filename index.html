@@ -5,219 +5,158 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>gLPET Universe</title>
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
       overflow-x: hidden;
-      background-color: black;
-      font-family: 'Courier New', Courier, monospace;
-      color: white;
     }
-
-    .background {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
-    }
-
     .emoji-star {
-      position: absolute;
-      font-size: 24px;
-      opacity: 0;
-      animation: twinkle 6s infinite;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; }
-      10%, 90% { opacity: 1; }
-    }
-
-    header {
-      text-align: center;
-      padding: 30px 10px 10px 10px;
-    }
-
-    header img {
-      height: 60px;
-      vertical-align: middle;
-    }
-
-    header h1 {
-      display: inline;
-      color: white;
-      font-size: 24px;
-      margin-left: 10px;
-    }
-
-    .social-icons {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 2;
+      font-size: 20px;
+      animation: float 4s ease-in-out infinite;
+      opacity: 0;
+    }
+    @keyframes float {
+      0% { opacity: 0; transform: scale(0.8); }
+      25% { opacity: 1; transform: scale(1.1); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.8); }
+    }
+    header {
       display: flex;
-      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      z-index: 10;
     }
-
-    .social-icons img {
-      width: 28px;
-      height: 28px;
+    header svg, header img.icon {
+      height: 24px;
+      margin-right: 15px;
     }
-
+    header img.icon:hover {
+      opacity: 0.7;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 80px;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 20px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .container {
+      text-align: justify;
+      max-width: 800px;
+      margin: 30px auto;
+    }
     .contract {
       color: gold;
       text-align: center;
-      margin-bottom: 20px;
+      margin: 10px 0;
+      font-weight: bold;
     }
-
-    .description {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-      white-space: pre-wrap;
-      color: white;
-    }
-
-    .how-button {
-      margin: 30px auto;
+    .button {
       display: block;
-      padding: 10px 20px;
-      border: 1px solid white;
+      margin: 20px auto;
       background: black;
       color: white;
+      border: 1px solid white;
+      padding: 10px 20px;
       cursor: pointer;
     }
-
-    .carousel {
+    .gallery {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
+      align-items: flex-start;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      gap: 20px;
+      margin: 40px auto 60px;
+      max-width: 1200px;
     }
-
-    .carousel-item {
-      width: 90px;
+    .gallery-item {
+      width: 100px;
       text-align: center;
     }
-
-    .carousel-item img {
-      width: 100%;
-      height: auto;
+    .gallery-item img {
+      width: 100px;
+      height: 100px;
       border-radius: 10px;
+      object-fit: cover;
     }
-
-    .carousel-item span {
+    .gallery-item p {
       font-size: 12px;
       color: white;
+      margin-top: 5px;
     }
-
-    .cursor {
-      width: 24px;
-      height: 24px;
-      position: fixed;
-      pointer-events: none;
-      z-index: 1000;
+    .highlighted {
+      color: gold;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="background" id="bg"></div>
-
-  <div class="social-icons">
-    <a href="https://x.com/SLeocrypto" target="_blank"><img src="assets/x.svg" alt="X" /></a>
-    <a href="https://t.me/gLOLpet" target="_blank"><img src="assets/tg.svg" alt="Telegram" /></a>
-    <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump" target="_blank"><img src="assets/dex.svg" alt="Dex" /></a>
-  </div>
-
   <header>
-    <img src="logo.png" alt="Logo" />
-    <h1>Welcome to the gLPET Universe</h1>
+    <div>
+      <a href="https://x.com/SLeocrypto"><img src="assets/x.svg" class="icon" /></a>
+      <a href="https://t.me/gLOLpet"><img src="assets/tg.svg" class="icon" /></a>
+      <a href="https://dexscreener.com/solana/61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump"><img src="assets/dex.svg" class="icon" /></a>
+    </div>
   </header>
 
-  <div class="contract">
-    CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump
+  <div class="logo">
+    <img src="logo.png" alt="gLPET Logo" />
+    <h1>Welcome to the gLPET Universe</h1>
+  </div>
+  <p class="contract">CA: 61XV1ygYVFW42yFBjKro8TrzxMqYfHBthvMwFckdpump</p>
+
+  <div class="container">
+    <p>My main vision is to become <em>OG</em>, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.</p>
+    <p>I want to show people that in the meme market, most projects become fixated on a single character.<br>Holders start depending on it — waiting for what the owner will do, what the dev will announce, waiting for content... and so on.</p>
+    <p>But I want to show that people can become the source of content themselves — they can shape the narrative however they want:<br>funny, creative, emotional, or completely chaotic.</p>
+    <p>They don’t need to wait for a new TikTok video or a push from some big page.<br>Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.<br>That alone can trigger a mini-viral moment. Now imagine 1,000 people…<br>That’s a new kind of Covid, right? 😹</p>
+    <p>The feed on Twitter would be flooded.<br>Sure, some will try to profit from it — but regular holders will keep posting and pushing.</p>
+    <p class="highlighted">No more just “buy and wait.” This is “buy and create.”</p>
   </div>
 
-  <div class="description">
-    My main vision is to become OG, and similar projects ($michi, giko, selfie e t.c.) — but with a different message.
-    I want to show people that in the meme market, most projects become fixated on a single character.
-    Holders start depending on it — waiting for what the owner will do, what the dev will announce,
-    waiting for content... and so on.
+  <button class="button" onclick="location.href='how-it-works.html'">How it works</button>
 
-    But I want to show that people can become the source of content themselves — they can shape the narrative however they want:
-    funny, creative, emotional, or completely chaotic.
-
-    They don’t need to wait for a new TikTok video or a push from some big page.
-    Just imagine: 100 people hold the token → each of them edits a photo → you get 100 unique images.
-    That alone can trigger a mini-viral moment. Now imagine 1,000 people…
-    That’s a new kind of Covid, right? 😹
-
-    The feed on Twitter would be flooded.
-    Sure, some will try to profit from it — but regular holders will keep posting and pushing.
-    No more just “buy and wait.” This is “buy and create.”
-  </div>
-
-  <button class="how-button">How it works</button>
-
-  <div class="carousel">
-    <div class="carousel-item">
-      <img src="assets/Elon_Musk_7.jpg" alt="Elon" />
-      <span>@elonmusk</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/A.Tate_14.jpg" alt="Tate" />
-      <span>@Cobratate</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/Shibetoshi_nakamoto_2.jpg" alt="BillyM2k" />
-      <span>@BillyM2k</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/Marcell_3.jpg" alt="Marcell" />
-      <span>@MarcellxMarcell</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/GabrielShapiro_2.jpg" alt="lex_node" />
-      <span>@lex_node</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/Lexaprotrader_2.jpg" alt="Lexapro" />
-      <span>@LexaproTrader</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/Ram_2.jpg" alt="Ram" />
-      <span>@0xRamonos</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/Bossman_2.jpg" alt="Bossman" />
-      <span>@0xBossman</span>
-    </div>
-    <div class="carousel-item">
-      <img src="assets/DJ_En_4.jpg" alt="DJ En" />
-      <span>@thisisdjen</span>
-    </div>
+  <div class="gallery">
+    <div class="gallery-item"><img src="assets/Elon_Musk_7.jpg" /><p>@elonmusk</p></div>
+    <div class="gallery-item"><img src="assets/A.Tate_19.jpg" /><p>@Cobratate</p></div>
+    <div class="gallery-item"><img src="assets/Shibetoshi_nakamoto_2.jpg" /><p>@BillyM2k</p></div>
+    <div class="gallery-item"><img src="assets/Marcell_5.jpg" /><p>@MarcellxMarcell</p></div>
+    <div class="gallery-item"><img src="assets/GabrielShapiro_6.jpg" /><p>@lex_node</p></div>
+    <div class="gallery-item"><img src="assets/Lexaprotrader_4.jpg" /><p>@LexaproTrader</p></div>
+    <div class="gallery-item"><img src="assets/Ram_2.jpg" /><p>@0xRamonos</p></div>
+    <div class="gallery-item"><img src="assets/Bossman_8.jpg" /><p>@0xBossman</p></div>
+    <div class="gallery-item"><img src="assets/DJ_En_4.jpg" /><p>@thisisdjen</p></div>
   </div>
 
   <script>
-    const emojis = ['😺', '🐶', '🐵', '😹', '🐱', '🦊', '🐻'];
-    const bg = document.getElementById('bg');
-
-    function spawnEmoji() {
+    const emojis = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯'];
+    function createEmoji() {
       const emoji = document.createElement('div');
       emoji.className = 'emoji-star';
       emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * 100 + 'vw';
-      emoji.style.top = Math.random() * 100 + 'vh';
-      emoji.style.animationDelay = (Math.random() * 6) + 's';
-      bg.appendChild(emoji);
-
-      setTimeout(() => bg.removeChild(emoji), 6000);
+      emoji.style.left = Math.random() * window.innerWidth + 'px';
+      emoji.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(emoji);
+      setTimeout(() => document.body.removeChild(emoji), 4000);
     }
-
-    setInterval(spawnEmoji, 300);
+    setInterval(createEmoji, 300);
   </script>
 </body>
 </html>
