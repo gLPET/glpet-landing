@@ -6,7 +6,7 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
-  cursor: none; /* Убираем стандартную стрелку */
+  cursor: none; /* Убираем стандартный курсор */
 }
 
 .header {
