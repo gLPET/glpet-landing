@@ -1,112 +1,113 @@
-<!-- Horizontal galleries setup (9 mini-cards in one row) -->
-<div class="gallery-container">
-  <button class="gallery-arrow left" onclick="scrollGallery(-1)">⬅</button>
-  <div class="mini-gallery" id="miniGallery">
-    <div class="gallery-row">
-      <!-- Elon Musk -->
-      <img src="assets/Elon_Musk_7.jpg" alt="Elon Musk">
-      <img src="assets/Elon_Musk_10.jpg" alt="Elon Musk">
-      <img src="assets/Elon_Musk_11.jpg" alt="Elon Musk">
-      <img src="assets/Elon_Musk_17.jpg" alt="Elon Musk">
-    </div>
-    <div class="gallery-row">
-      <!-- A.Tate -->
-      <img src="assets/Ram_1.jpg" alt="A.Tate">
-      <img src="assets/Ram_2.jpg" alt="A.Tate">
-    </div>
-    <div class="gallery-row">
-      <!-- Shibetoshi Nakamoto -->
-      <img src="assets/BillyM2k_1.jpg" alt="Shibetoshi Nakamoto">
-      <img src="assets/BillyM2k_2.jpg" alt="Shibetoshi Nakamoto">
-      <img src="assets/BillyM2k_3.jpg" alt="Shibetoshi Nakamoto">
-      <img src="assets/BillyM2k_4.jpg" alt="Shibetoshi Nakamoto">
-    </div>
-    <div class="gallery-row">
-      <!-- Marcell -->
-      <img src="assets/Marcell_2.jpg" alt="Marcell">
-      <img src="assets/Marcell_3.jpg" alt="Marcell">
-      <img src="assets/Marcell_5.jpg" alt="Marcell">
-      <img src="assets/Marcell_6.jpg" alt="Marcell">
-    </div>
-    <div class="gallery-row">
-      <!-- Gabriel Shapiro -->
-      <img src="assets/GabrielShapiro_2.jpg" alt="Gabriel Shapiro">
-      <img src="assets/GabrielShapiro_5.jpg" alt="Gabriel Shapiro">
-      <img src="assets/GabrielShapiro_6.jpg" alt="Gabriel Shapiro">
-      <img src="assets/GabrielShapiro_7.jpg" alt="Gabriel Shapiro">
-    </div>
-    <div class="gallery-row">
-      <!-- Lexaprotrader -->
-      <img src="assets/Lexaprotrader_2.jpg" alt="Lexaprotrader">
-      <img src="assets/Lexaprotrader_3.jpg" alt="Lexaprotrader">
-      <img src="assets/Lexaprotrader_4.jpg" alt="Lexaprotrader">
-      <img src="assets/Lexaprotrader_9.jpg" alt="Lexaprotrader">
-    </div>
-    <div class="gallery-row">
-      <!-- Ram -->
-      <img src="assets/Ram_1.jpg" alt="Ram">
-      <img src="assets/Ram_2.jpg" alt="Ram">
-    </div>
-    <div class="gallery-row">
-      <!-- Bossman -->
-      <img src="assets/Bossman_1.jpg" alt="Bossman">
-      <img src="assets/Bossman_2.jpg" alt="Bossman">
-    </div>
-    <div class="gallery-row">
-      <!-- DJ.En -->
-      <img src="assets/DJEn_1.jpg" alt="DJ.En">
-      <img src="assets/DJEn_2.jpg" alt="DJ.En">
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gLPET Universe</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+    }
+    .gallery-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .carousel {
+      position: relative;
+      width: 100px;
+    }
+    .carousel img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto;
+    }
+    .carousel p {
+      font-size: 12px;
+      color: white;
+      margin-top: 8px;
+    }
+    .arrows {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .arrow {
+      background: yellow;
+      border-radius: 50%;
+      padding: 10px 14px;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 0 10px #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the gLPET Universe</h1>
+
+  <div class="gallery-wrapper" id="gallery">
+    <!-- Each of these represents a mini-gallery -->
   </div>
-  <button class="gallery-arrow right" onclick="scrollGallery(1)">➡</button>
-</div>
 
-<style>
-  .gallery-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-    position: relative;
-  }
-  .mini-gallery {
-    display: grid;
-    grid-template-columns: repeat(9, 100px);
-    overflow: hidden;
-    gap: 10px;
-    padding: 10px;
-  }
-  .gallery-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .gallery-row img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 12px;
-  }
-  .gallery-arrow {
-    background-color: yellow;
-    color: black;
-    font-size: 24px;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    box-shadow: 0 0 8px #ff0;
-    cursor: pointer;
-  }
-</style>
+  <div class="arrows">
+    <div class="arrow" onclick="prev()">←</div>
+    <div class="arrow" onclick="next()">→</div>
+  </div>
 
-<script>
-  let currentOffset = 0;
-  const gallery = document.getElementById("miniGallery");
+  <script>
+    const data = {
+      "@elonmusk": ["Elon_Musk_7.jpg", "Elon_Musk_10.jpg", "Elon_Musk_11.jpg", "Elon_Musk_17.jpg"],
+      "@Cobratate": ["A.Tate_1.jpg", "A.Tate_2.jpg", "A.Tate_3.jpg", "A.Tate_4.jpg"],
+      "@BillyM2k": ["ShibetoshiNakamoto_1.jpg", "ShibetoshiNakamoto_2.jpg", "ShibetoshiNakamoto_3.jpg"],
+      "@MarcellxMarcell": ["Marcell_2.jpg", "Marcell_3.jpg", "Marcell_5.jpg"],
+      "@lex_node": ["GabrielShapiro_5.jpg", "GabrielShapiro_6.jpg", "GabrielShapiro_7.jpg"],
+      "@LexaproTrader": ["Lexaprotrader_2.jpg", "Lexaprotrader_3.jpg", "Lexaprotrader_4.jpg"],
+      "@0xRamonos": ["Ram_1.jpg", "Ram_2.jpg"],
+      "@0xBossman": ["Bossman_1.jpg", "Bossman_2.jpg"],
+      "@thisisdjen": ["DJ_En_1.jpg", "DJ_En_2.jpg"]
+    };
 
-  function scrollGallery(direction) {
-    const rowWidth = 110; // Width + gap
-    currentOffset += direction * rowWidth;
-    gallery.scrollLeft = currentOffset;
-  }
-</script>
+    let indices = Array(Object.keys(data).length).fill(0);
+
+    const gallery = document.getElementById("gallery");
+    const usernames = Object.keys(data);
+
+    function render() {
+      gallery.innerHTML = usernames.map((username, idx) => {
+        const images = data[username];
+        const imgSrc = `assets/${images[indices[idx] % images.length]}`;
+        return `
+          <div class="carousel">
+            <img src="${imgSrc}" alt="${username}" />
+            <p>${username}</p>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function next() {
+      indices = indices.map((i, idx) => (i + 1) % data[usernames[idx]].length);
+      render();
+    }
+
+    function prev() {
+      indices = indices.map((i, idx) => (i - 1 + data[usernames[idx]].length) % data[usernames[idx]].length);
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>
