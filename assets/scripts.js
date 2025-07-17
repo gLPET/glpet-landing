@@ -1,4 +1,4 @@
-// Кастомный курсор с хвостом
+// Кастомный курсор с длинным хвостом
 const trail = document.getElementById('cursor-trail');
 let trailParticles = [];
 
@@ -9,45 +9,47 @@ document.addEventListener('mousemove', (e) => {
   emoji.style.left = e.pageX + 'px';
   emoji.style.top = e.pageY + 'px';
   emoji.style.opacity = 1;
-  emoji.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+  emoji.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
   document.body.appendChild(emoji);
   trailParticles.push(emoji);
 
   setTimeout(() => {
     emoji.style.opacity = 0;
-    setTimeout(() => emoji.remove(), 500);
+    setTimeout(() => emoji.remove(), 800);
     trailParticles = trailParticles.filter(p => p !== emoji);
-  }, 1000);
+  }, 2000); // Увеличено время жизни до 2 секунд
 
-  if (trailParticles.length > 5) {
+  if (trailParticles.length > 10) { // Увеличен лимит до 10 частиц
     trailParticles[0].remove();
     trailParticles.shift();
   }
 });
 
-// Галерея
-let currentIndex = 0;
-const track = document.querySelector('.gallery-track');
-const columns = document.querySelectorAll('.gallery-column');
-const totalSlides = Math.ceil(columns.length / 9);
+// Галерея с переключением фотографий
+let currentImageIndex = 0;
+const cells = document.querySelectorAll('.gallery-cell');
+const images = document.querySelectorAll('.gallery-image');
 
 function updateGallery() {
-  columns.forEach((column, i) => {
-    column.style.opacity = (i >= currentIndex * 9 && i < (currentIndex + 1) * 9) ? 1 : 0;
+  cells.forEach(cell => {
+    const cellImages = cell.querySelectorAll('.gallery-image');
+    cellImages.forEach((img, i) => {
+      img.style.display = (i === currentImageIndex) ? 'block' : 'none';
+    });
   });
 }
 
 document.querySelector('.gallery-arrow.left').addEventListener('click', () => {
-  currentIndex = Math.max(0, currentIndex - 1);
+  currentImageIndex = (currentImageIndex - 1 + 4) % 4; // Цикл по 4 изображениям
   updateGallery();
 });
 
 document.querySelector('.gallery-arrow.right').addEventListener('click', () => {
-  currentIndex = Math.min(totalSlides - 1, currentIndex + 1);
+  currentImageIndex = (currentImageIndex + 1) % 4; // Цикл по 4 изображениям
   updateGallery();
 });
 
-// Эмодзи-звезды
+// Эмодзи-звезды с плавным появлением
 const canvas = document.getElementById('emoji-background');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -60,22 +62,19 @@ function EmojiParticle() {
   this.x = Math.random() * canvas.width;
   this.y = Math.random() * canvas.height;
   this.emoji = emojis[Math.floor(Math.random() * emojis.length)];
-  this.life = 100 + Math.random() * 150;
+  this.life = 200 + Math.random() * 300; // Увеличен срок жизни
   this.alpha = 0;
-  this.fadeIn = true;
 }
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles = particles.filter(p => p.life > 0);
 
-  if (Math.random() < 0.02) particles.push(new EmojiParticle());
+  if (Math.random() < 0.05) particles.push(new EmojiParticle()); // Увеличена частота появления
 
   particles.forEach(p => {
-    if (p.fadeIn && p.alpha < 1) p.alpha += 0.02;
-    else if (!p.fadeIn && p.alpha > 0) p.alpha -= 0.02;
-    else p.fadeIn = false;
-
+    if (p.alpha < 1) p.alpha += 0.01; // Плавное появление
+    else if (p.life < 50) p.alpha -= 0.01; // Плавное исчезновение в конце жизни
     p.life--;
     ctx.globalAlpha = p.alpha;
     ctx.font = '20px serif';
