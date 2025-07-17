@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the gLPET Universe</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
     <canvas id="emoji-background"></canvas>
@@ -29,7 +30,9 @@
     </div>
     <a href="#" class="how-button">How it works</a>
     <div class="gallery">
-        <button class="gallery-arrow left">←</button>
+        <div class="arrow-wrapper left">
+            <button class="gallery-arrow">←</button>
+        </div>
         <div class="gallery-track">
             <div class="gallery-cell">
                 <img src="assets/Elon_Musk_7.jpg" alt="Elon Musk 1" class="gallery-image">
@@ -95,7 +98,9 @@
                 <a href="https://x.com/thisisdjen" target="_blank" class="gallery-link">@thisisdjen</a>
             </div>
         </div>
-        <button class="gallery-arrow right">→</button>
+        <div class="arrow-wrapper right">
+            <button class="gallery-arrow">→</button>
+        </div>
     </div>
     <div id="cursor-trail"></div>
     <script src="assets/scripts.js"></script>
