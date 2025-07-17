@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #0a0a1a, #1a1a3a, #2a2a5a);
+  background: radial-gradient(circle, #0a0a1a 0%, #000000 70%);
   font-family: monospace;
   color: white;
   text-align: center;
@@ -51,24 +51,38 @@ body {
   margin-top: 20px;
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .gallery-track {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 10px;
-  overflow-x: auto;
   padding: 10px;
+  max-width: 90%;
+  overflow-x: hidden;
 }
 
-.gallery-track img {
+.gallery-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-column img {
   width: 100%;
   height: auto;
   max-height: 200px;
   object-fit: cover;
+  margin-bottom: 5px;
   transition: opacity 0.5s ease;
+}
+
+.gallery-column a {
+  font-size: 0.7rem;
+  color: #ccc;
+  text-decoration: none;
 }
 
 .gallery-arrow {
@@ -79,16 +93,7 @@ body {
   padding: 5px 10px;
   font-size: 20px;
   cursor: pointer;
-  margin: 10px;
-}
-
-.gallery-switch {
-  background: none;
-  color: white;
-  border: 2px solid white;
-  padding: 5px 15px;
-  margin: 10px;
-  cursor: pointer;
+  margin: 0 10px;
 }
 
 .how-button {
