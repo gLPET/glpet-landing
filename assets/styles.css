@@ -6,38 +6,53 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
-  /* cursor: none; оставим для теста */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
 }
 
 .main-logo {
-  width: 200px;
+  width: 150px; /* Увеличил размер логотипа */
   height: auto;
+  margin-right: 20px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logo-title {
-  margin-top: 20px;
-  font-size: 1.5rem;
+  margin: 0;
+  font-size: 2.5rem; /* Увеличил заголовок */
+  text-align: left;
 }
 
-.contract {
-  font-size: 0.8rem;
-  color: #ccc;
-}
-
-.social-icons {
+.social-contract {
   display: flex;
+  align-items: center;
   gap: 15px;
-  justify-content: center;
-  padding: 10px;
+  margin-top: 5px;
 }
 
 .social-icons img {
-  width: 20px;
+  width: 25px; /* Немного увеличил иконки */
+}
+
+.contract {
+  font-size: 0.9rem;
+  color: #ccc;
+  text-align: left;
 }
 
 .description {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 20px auto 0; /* Поднимаем текст выше, убрав нижний отступ */
   font-size: 0.85rem;
   line-height: 1.5;
 }
@@ -48,7 +63,7 @@ body {
 }
 
 .gallery {
-  margin-top: 20px;
+  margin: 10px auto 0; /* Поднимаем галерею выше */
   position: relative;
   display: flex;
   align-items: center;
@@ -69,7 +84,7 @@ body {
   align-items: center;
   width: 140px;
   height: 154px;
-  border: 2px solid #000000;
+  border: 2px solid white; /* Белые рамки */
   border-radius: 10px;
   padding: 0;
   box-sizing: border-box;
@@ -77,7 +92,7 @@ body {
 }
 
 .image-container {
-  height: 126px; /* Фиксированная высота для контейнера изображений */
+  height: 126px;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -100,11 +115,10 @@ body {
   opacity: 1;
 }
 
-.gallery-cell a.gallery-link,
-.how-button {
-  cursor: none !important;
+.gallery-text {
   margin-top: 5px;
   font-size: 0.8rem;
+  color: white;
 }
 
 .how-button {
