@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How It Works - gLPET Universe</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/floating-emoji.css">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-    <canvas id="emoji-background"></canvas>
-    <div class="header">
-        <div class="header-content">
-            <img src="logo.png" alt="gLPET Logo" class="main-logo">
+    <div id="loading-screen">
+        <img src="assets/gif.gif" alt="Loading" class="loading-gif" id="loading-gif" loop="false">
+    </div>
+    <div id="main-content" style="display: none;">
+        <canvas id="emoji-background"></canvas>
+        <div class="header">
+            <div class="header-content">
+                <img src="logo.png" alt="gLPET Logo" class="main-logo">
+            </div>
         </div>
+        <div class="image-container">
+            <img src="assets/main2.png" alt="Centered Image" class="centered-image">
+        </div>
+        <a href="index.html" class="how-button">Back to Home</a>
+        <script src="assets/scripts.js"></script>
+        <script src="assets/floating-emoji.js"></script>
     </div>
-    <div class="full-image-container">
-        <img src="assets/main2.png" alt="Full Page Image" class="full-image">
-    </div>
-    <a href="index.html" class="how-button">Back to Home</a>
-    <script src="assets/scripts.js"></script>
 </body>
 </html>
